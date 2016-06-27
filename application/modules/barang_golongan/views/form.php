@@ -24,7 +24,7 @@
 		<div class="box-body">
 			<div class="form-group form-inline">
 				<?php echo form_label($title_parent,$index_parent,array('class'=>'control-label'))?>
-				<?php echo form_dropdown($index_parent,$this->general_model->dropdown('barang_jenis',$title_parent),set_value('barang_golongan',(isset($row->parent)?$row->parent:'')),'required=required class="form-control input-sm"')?>
+				<?php echo form_dropdown($index_parent,$this->general_model->dropdown('barang_jenis',$title_parent),set_value('barang_golongan',(isset($row->parent)?$row->parent:'')),'required=required class="form-control input-sm select2"')?>
 				<small><?php echo form_error($index_parent)?></small>
 			</div>			
 			<div class="form-group form-inline">

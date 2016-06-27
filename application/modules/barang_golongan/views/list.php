@@ -24,7 +24,7 @@
 					<?php echo form_input(array('name'=>'search','value'=>$this->input->get('search'),'autocomplete'=>'off','placeholder'=>$this->lang->line('search').'..','onchange=>"submit()"','class'=>'form-control input-sm'))?>
 				</div>
 				<div class="form-group">
-					<?php echo form_dropdown($index_parent,$this->general_model->dropdown('barang_jenis',$title_parent),$this->input->get($index_parent),'class="form-control input-sm" onchange="submit()"')?>
+					<?php echo form_dropdown($index_parent,$this->general_model->dropdown('barang_jenis',$title_parent),$this->input->get($index_parent),'class="form-control input-sm select2" onchange="submit()"')?>
 				</div>
 			<?php echo form_close()?>
 			<?php echo form_open($action_delete,array('class'=>'form-check-delete'))?>

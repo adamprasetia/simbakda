@@ -159,3 +159,14 @@ textarea.sig{
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
     height: 85px;
 }
+
+.select2-container--default .select2-selection--single {
+    border-radius: 0px;
+    border: 1px solid #d2d6de;
+}
+.select2-container--default .select2-selection--single, .select2-selection .select2-selection--single {
+    padding: 5px 10px;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+}

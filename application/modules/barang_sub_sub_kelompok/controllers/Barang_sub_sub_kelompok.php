@@ -2,7 +2,7 @@
 
 class Barang_sub_sub_kelompok extends MY_Controller 
 {
-	private $title = "Sub-Sub Kelompok Barang";
+	private $title = "Sub2 Kelompok Barang";
 	private $index = "barang_sub_sub_kelompok";
 	private $title_parent = "Sub Kelompok Barang";
 	private $index_parent = "barang_sub_kelompok";

@@ -30,7 +30,7 @@ class Barang_golongan extends MY_Controller
 		$this->table->set_template(tbl_tmp());
 		$head_data = array(
 			'code' => $this->lang->line('code'),
-			'name' => strtoupper($this->lang->line('name')),
+			'name' => $this->lang->line('name'),
 			$this->index_parent.'_name' => $this->title_parent
 		);
 		$heading[] = form_checkbox(array('id'=>'selectAll','value'=>1));

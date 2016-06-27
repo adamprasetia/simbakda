@@ -15,4 +15,6 @@ $(document).ready(function(){
 		changeYear: true,
 		dateFormat: 'dd/mm/yy' 		 
 	});		
+
+   	$(".select2").select2();	
 });
