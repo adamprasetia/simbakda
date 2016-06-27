@@ -16,5 +16,8 @@ $(document).ready(function(){
 		dateFormat: 'dd/mm/yy' 		 
 	});		
 
-   	$(".select2").select2();	
+   	$(".select2").select2({
+   		dropdownAutoWidth:'true',
+   		width: 'auto'
+   	});	
 });

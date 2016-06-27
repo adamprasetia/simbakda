@@ -92,6 +92,12 @@
                 <li class="<?php echo active_menu('barang_sub_sub_kelompok')?>"><?php echo anchor('barang_sub_sub_kelompok','<i class="fa fa-circle-o"></i> Sub-Sub Kelompok Barang')?></li>
               </ul>
             </li>
+            <li class="<?php echo active_menu('kabupaten')?>"><?php echo anchor('kabupaten','<i class="fa fa-database"></i> Master Kabupaten')?></li>
+            <li class="<?php echo active_menu('bidang_unit')?>"><?php echo anchor('bidang_unit','<i class="fa fa-database"></i> Master Unit Bidang')?></li>
+            <li class="<?php echo active_menu('bidang_unit_kerja')?>"><?php echo anchor('bidang_unit_kerja','<i class="fa fa-database"></i> Master Unit Kerja')?></li>
+            <li class="<?php echo active_menu('bidang_unit_kerja_lokasi')?>"><?php echo anchor('bidang_unit_kerja_lokasi','<i class="fa fa-database"></i> Master Lokasi')?></li>
+            <li class="<?php echo active_menu('bidang_unit_kerja_ruangan')?>"><?php echo anchor('bidang_unit_kerja_ruangan','<i class="fa fa-database"></i> Master Ruangan')?></li>
+            <li class="<?php echo active_menu('perusahaan_rekanan')?>"><?php echo anchor('perusahaan_rekanan','<i class="fa fa-database"></i> Perusahaan Rekanan')?></li>
           </ul>
         </li> 
         <li class="treeview">
@@ -100,6 +106,14 @@
           </a>
           <ul class="treeview-menu">
             <li class="<?php echo active_menu('master','barang_jenis')?>"><?php echo anchor('master/barang_jenis','<i class="fa fa-circle-o"></i> Jenis Barang')?></li>
+            <li class="<?php echo active_menu('master','provinsi')?>"><?php echo anchor('master/provinsi','<i class="fa fa-circle-o"></i> Provinsi')?></li>
+            <li class="<?php echo active_menu('master','pemilik')?>"><?php echo anchor('master/pemilik','<i class="fa fa-circle-o"></i> Pemilik')?></li>
+            <li class="<?php echo active_menu('master','bidang')?>"><?php echo anchor('master/bidang','<i class="fa fa-circle-o"></i> Bidang')?></li>
+            <li class="<?php echo active_menu('master','satuan')?>"><?php echo anchor('master/satuan','<i class="fa fa-circle-o"></i> Satuan')?></li>
+            <li class="<?php echo active_menu('master','warna')?>"><?php echo anchor('master/warna','<i class="fa fa-circle-o"></i> Warna')?></li>
+            <li class="<?php echo active_menu('master','pangkat')?>"><?php echo anchor('master/pangkat','<i class="fa fa-circle-o"></i> Pangkat')?></li>
+            <li class="<?php echo active_menu('master','perusahaan_bentuk')?>"><?php echo anchor('master/perusahaan_bentuk','<i class="fa fa-circle-o"></i> Bentuk Perusahaan')?></li>
+            <li class="<?php echo active_menu('master','bank')?>"><?php echo anchor('master/bank','<i class="fa fa-circle-o"></i> Bank')?></li>
           </ul>
         </li> 
         <?php if ($this->user_login['level']==1): ?>          
