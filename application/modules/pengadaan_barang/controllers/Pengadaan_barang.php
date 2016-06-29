@@ -74,6 +74,8 @@ class Pengadaan_barang extends MY_Controller
 			'search' => $this->input->post('search'),
 			'limit' => $this->input->post('limit'),
 			$this->index_parent => $this->input->post($this->index_parent),
+			'tahun_anggaran' => $this->input->post('tahun_anggaran'),
+			'bidang_unit' => $this->input->post('bidang_unit'),
 			'date_from' => $this->input->post('date_from'),
 			'date_to' => $this->input->post('date_to')
 		);

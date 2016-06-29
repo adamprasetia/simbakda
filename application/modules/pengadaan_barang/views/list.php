@@ -24,6 +24,12 @@
 					<?php echo form_input(array('name'=>'search','value'=>$this->input->get('search'),'autocomplete'=>'off','placeholder'=>$this->lang->line('search').'..','onchange=>"submit()"','class'=>'form-control input-sm'))?>
 				</div>
 				<div class="form-group">
+					<?php echo form_dropdown('tahun_anggaran',$this->general_model->dropdown('tahun_anggaran','Tahun Anggaran'),$this->input->get('tahun_anggaran'),'class="form-control input-sm select2" onchange="submit()"')?>
+				</div>				
+				<div class="form-group">
+					<?php echo form_dropdown('bidang_unit',$this->general_model->dropdown('bidang_unit','Unit SKPD'),$this->input->get('bidang_unit'),'class="form-control input-sm select2" onchange="submit()"')?>
+				</div>				
+				<div class="form-group">
 					Tanggal : 
 					<?php echo form_input(array('name'=>'date_from','placeholder'=>$this->lang->line('from'),'class'=>'form-control input-sm input-tanggal','size'=>'10','value'=>$this->input->get('date_from')))?>
 					<?php echo form_input(array('name'=>'date_to','placeholder'=>$this->lang->line('to'),'class'=>'form-control input-sm input-tanggal','size'=>'10','value'=>$this->input->get('date_to')))?>
