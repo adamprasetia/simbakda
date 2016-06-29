@@ -25,6 +25,7 @@ $lang['logout'] = 'Keluar';
 
 $lang['menu'] = 'Menu Utama';
 $lang['menu_master_data'] = 'Data Master';
+$lang['menu_transaction'] = 'Transaksi';
 $lang['menu_reference'] = 'Data Referensi';
 $lang['menu_user'] = 'Pengguna';
 

@@ -8,8 +8,9 @@ class General_model extends CI_Model {
 	function get_from_field_row($table_name,$field,$value){
 		$this->db->where($field,$value);
 		$this->db->limit(1);
-		if($this->db->get($table_name)->num_rows() > 0){
-			return $this->db->get($table_name)->row();		
+		$result = $this->db->get($table_name);
+		if($result->num_rows() > 0){
+			return $result->row();		
 		}
 		return false;	
 	}				

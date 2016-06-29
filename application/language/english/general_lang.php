@@ -25,6 +25,7 @@ $lang['logout'] = 'Sign out';
 
 $lang['menu'] = 'Main Menu';
 $lang['menu_master_data'] = 'Master Data';
+$lang['menu_transaction'] = 'Transaction';
 $lang['menu_reference'] = 'Reference';
 $lang['menu_user'] = 'Users';
 

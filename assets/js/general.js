@@ -15,6 +15,12 @@ $(document).ready(function(){
 		changeYear: true,
 		dateFormat: 'dd/mm/yy' 		 
 	});		
+	
+	$('.input-uang').priceFormat({
+		prefix: '',
+		thousandsSeparator: ',',
+		centsLimit: 0
+	});
 
    	$(".select2").select2({
    		dropdownAutoWidth:'true',
