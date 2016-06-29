@@ -27,6 +27,8 @@ class Pengadaan_barang extends MY_Controller
 		$head_data = array(
 			'nomor' => 'Nomor',
 			'name' => 'Tanggal',
+			'tahun_anggaran_name' => 'Tahun Anggaran',
+			'bidang_unit_name' => 'Unit SKPD',
 			'jumlah' => 'Jumlah',
 			'total' => 'Total',
 		);
@@ -45,6 +47,8 @@ class Pengadaan_barang extends MY_Controller
 				$i++,
 				anchor($this->index.'/edit/'.$r->id.get_query_string(),$r->nomor),
 				format_dmy($r->tanggal),
+				$r->tahun_anggaran_name,
+				$r->bidang_unit_name,
 				array('data'=>number_format($r->jumlah),'align'=>'right'),
 				array('data'=>number_format($r->total),'align'=>'right'),
 				anchor($this->index.'/edit/'.$r->id.get_query_string(),$this->lang->line('edit'))
@@ -78,7 +82,9 @@ class Pengadaan_barang extends MY_Controller
 	private function _field(){
 		$data = array(
 			'nomor' => $this->input->post('nomor'),
-			'tanggal' => format_ymd($this->input->post('tanggal'))
+			'tanggal' => format_ymd($this->input->post('tanggal')),
+			'tahun_anggaran' => $this->input->post('tahun_anggaran'),
+			'bidang_unit' => $this->input->post('bidang_unit')
 		);
 		return $data;		
 	}

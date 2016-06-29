@@ -113,6 +113,7 @@
             <li class="<?php echo active_menu('master','pangkat')?>"><?php echo anchor('master/pangkat','<i class="fa fa-circle-o"></i> Pangkat')?></li>
             <li class="<?php echo active_menu('master','perusahaan_bentuk')?>"><?php echo anchor('master/perusahaan_bentuk','<i class="fa fa-circle-o"></i> Bentuk Perusahaan')?></li>
             <li class="<?php echo active_menu('master','bank')?>"><?php echo anchor('master/bank','<i class="fa fa-circle-o"></i> Bank')?></li>
+            <li class="<?php echo active_menu('master','tahun_anggaran')?>"><?php echo anchor('master/tahun_anggaran','<i class="fa fa-circle-o"></i> Tahun Anggaran')?></li>
           </ul>
         </li> 
         <?php if ($this->user_login['level']==1): ?>          

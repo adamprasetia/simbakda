@@ -21,15 +21,31 @@
 			<?php echo $owner?>
 		</div>
 		<div class="box-body">
-			<div class="form-group form-inline">
-				<?php echo form_label('No Dokumen','nomor',array('class'=>'control-label'))?>
-				<?php echo form_input(array('name'=>'nomor','class'=>'form-control input-sm','maxlength'=>'100','size'=>'50','autocomplete'=>'off','value'=>set_value('nomor',(isset($row->nomor)?$row->nomor:'')),'required'=>'required','autofocus'=>'autofocus'))?>
-				<small><?php echo form_error('nomor')?></small>
-			</div>
-			<div class="form-group form-inline">
-				<?php echo form_label('Tanggal','tanggal',array('class'=>'control-label'))?>
-				<?php echo form_input(array('name'=>'tanggal','class'=>'form-control input-sm input-tanggal','maxlength'=>'10','autocomplete'=>'off','value'=>set_value('tanggal',(isset($row->tanggal)?$row->tanggal:'')),'required'=>'required'))?>
-				<small><?php echo form_error('tanggal')?></small>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group form-inline">
+						<?php echo form_label('No Dokumen','nomor',array('class'=>'control-label'))?>
+						<?php echo form_input(array('name'=>'nomor','class'=>'form-control input-sm','maxlength'=>'100','size'=>'50','autocomplete'=>'off','value'=>set_value('nomor',(isset($row->nomor)?$row->nomor:'')),'required'=>'required','autofocus'=>'autofocus'))?>
+						<small><?php echo form_error('nomor')?></small>
+					</div>
+					<div class="form-group form-inline">
+						<?php echo form_label('Tanggal','tanggal',array('class'=>'control-label'))?>
+						<?php echo form_input(array('name'=>'tanggal','class'=>'form-control input-sm input-tanggal','maxlength'=>'10','autocomplete'=>'off','value'=>set_value('tanggal',(isset($row->tanggal)?$row->tanggal:'')),'required'=>'required'))?>
+						<small><?php echo form_error('tanggal')?></small>
+					</div>					
+				</div>
+				<div class="col-md-6">
+					<div class="form-group form-inline">
+						<?php echo form_label('Tahun Anggaran','tahun_anggaran',array('class'=>'control-label'))?>
+						<?php echo form_dropdown('tahun_anggaran',$this->general_model->dropdown('tahun_anggaran','Tahun Anggaran'),set_value('tahun_anggaran',(isset($row->tahun_anggaran)?$row->tahun_anggaran:'')),'required=required class="form-control input-sm select2"')?>
+						<small><?php echo form_error('tahun_anggaran')?></small>
+					</div>								
+					<div class="form-group form-inline">
+						<?php echo form_label('Unit SKPD','bidang_unit',array('class'=>'control-label'))?>
+						<?php echo form_dropdown('bidang_unit',$this->general_model->dropdown('bidang_unit','Unit SKPD'),set_value('bidang_unit',(isset($row->bidang_unit)?$row->bidang_unit:'')),'required=required class="form-control input-sm select2"')?>
+						<small><?php echo form_error('bidang_unit')?></small>
+					</div>			
+				</div>
 			</div>
 		</div>
 	</div>
