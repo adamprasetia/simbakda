@@ -96,7 +96,8 @@
             <i class="fa fa-tasks"></i> <span><?php echo $this->lang->line('menu_transaction') ?></span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php echo active_menu('pengadaan_barang')?>"><?php echo anchor('pengadaan_barang','<i class="fa fa-circle-o"></i> Pengadaan Barang')?></li>
+            <li class="<?php echo active_menu('rencana_pengadaan_barang')?>"><?php echo anchor('rencana_pengadaan_barang','<i class="fa fa-circle-o"></i> Rencana Pengadaan Barang')?></li>
+            <li class="<?php echo active_menu('rencana_pemeliharaan_barang')?>"><?php echo anchor('rencana_pemeliharaan_barang','<i class="fa fa-circle-o"></i> Rencana Pemeliharaan Barang')?></li>
           </ul>
         </li> 
         <li class="treeview">

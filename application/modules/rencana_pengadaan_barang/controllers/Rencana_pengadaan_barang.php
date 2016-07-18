@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pengadaan_barang extends MY_Controller 
+class Rencana_pengadaan_barang extends MY_Controller 
 {
-	private $title = "Pengadaan Barang";
-	private $index = "pengadaan_barang";
+	private $title = "Rencana Pengadaan Barang";
+	private $index = "rencana_pengadaan_barang";
 
 	public function __construct()
 	{

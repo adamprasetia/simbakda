@@ -2,7 +2,7 @@
 
 class Model extends CI_Model 
 {
-	private $tbl_name = 'pengadaan_barang';
+	private $tbl_name = 'rencana_pemeliharaan_barang';
 	private $tbl_key 	= 'id';
 
 	public function query()
