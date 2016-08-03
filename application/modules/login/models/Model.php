@@ -1,15 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login_model extends CI_Model
+class Model extends CI_Model
 {
+	private $tbl_name = 'users';
+
 	function check_login($username,$password)
 	{
 		$this->db->select('a.id,a.name,a.level,b.name as level_name');
 		$this->db->where('username',$username);
 		$this->db->where('password',$password);
 		$this->db->where('status','1');
-		$this->db->from('user a');
-		$this->db->join('user_level b','a.level=b.code');
+		$this->db->from($this->tbl_name.' a');
+		$this->db->join($this->tbl_name.'_level b','a.level=b.code');
 		return $this->db->get();
 	}
 	function set_date_login($id)
@@ -21,6 +23,6 @@ class Login_model extends CI_Model
 			,'date_login'=>date('Y-m-d H:i:s')
 		);
 		$this->db->where('id',$id);
-		$this->db->update('user',$data);
+		$this->db->update($this->tbl_name,$data);
 	}	
 }

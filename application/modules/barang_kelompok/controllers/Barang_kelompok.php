@@ -69,7 +69,8 @@ class Barang_kelompok extends MY_Controller
 		$data['content'] = $this->load->view($this->index.'/list',$xdata,true);
 		$this->load->view('template',$data);
 	}
-	public function search(){
+	public function search()
+	{
 		$data = array(
 			'search' => $this->input->post('search'),
 			'limit' => $this->input->post('limit'),
@@ -77,7 +78,8 @@ class Barang_kelompok extends MY_Controller
 		);
 		redirect($this->index.get_query_string($data));		
 	}
-	private function _field(){
+	private function _field()
+	{
 		$data = array(
 			'code' => $this->input->post('code'),
 			'name' => strtoupper($this->input->post('name')),
@@ -86,13 +88,15 @@ class Barang_kelompok extends MY_Controller
 		);
 		return $data;		
 	}
-	private function _set_rules(){
+	private function _set_rules()
+	{
 		$this->form_validation->set_rules('code',$this->lang->line('code'),'required|trim');
 		$this->form_validation->set_rules('name',$this->lang->line('name'),'required|trim');
 		$this->form_validation->set_rules($this->index_parent,$this->title_parent,'required|trim');
 		$this->form_validation->set_error_delimiters('<p class="error">','</p>');
 	}
-	public function add(){
+	public function add()
+	{
 		$this->_set_rules();
 		if($this->form_validation->run()===false){
 			$xdata['title'] = $this->title;
@@ -116,7 +120,8 @@ class Barang_kelompok extends MY_Controller
 			redirect($this->index.'/add'.get_query_string());
 		}
 	}
-	public function edit($id){
+	public function edit($id)
+	{
 		$this->_set_rules();
 		if($this->form_validation->run()===false){
 			$xdata['title'] = $this->title;
@@ -141,7 +146,8 @@ class Barang_kelompok extends MY_Controller
 			redirect($this->index.'/edit/'.$id.get_query_string());
 		}
 	}
-	public function delete($id=''){
+	public function delete($id='')
+	{
 		if($id<>''){
 			$this->model->delete($id);
 		}

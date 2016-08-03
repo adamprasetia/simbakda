@@ -1,11 +1,11 @@
 <section class="content-header">
 	<h1>
-		<?php echo $this->lang->line('menu_user') ?>
-		<small><?php echo $this->lang->line('list') ?></small>
+		<?php echo $title ?>
+		<small><?php echo $subtitle ?></small>
 	</h1>
 	<ol class="breadcrumb">
 		<li><?php echo anchor('home','<span class="glyphicon glyphicon-home"></span> '.$this->lang->line('home'))?></li>
-		<li class="active"><?php echo $this->lang->line('list') ?></li>
+		<li class="active"><?php echo $title ?></li>
 	</ol>
 </section>
 <section class="content">
@@ -24,10 +24,10 @@
 					<?php echo form_input(array('name'=>'search','value'=>$this->input->get('search'),'autocomplete'=>'off','placeholder'=>$this->lang->line('search').'..','onchange=>"submit()"','class'=>'form-control input-sm'))?>
 				</div>
 				<div class="form-group">
-					<?php echo form_dropdown('level',$this->general_model->dropdown('user_level','Level'),$this->input->get('level'),'class="form-control input-sm" onchange="submit()"')?>
+					<?php echo form_dropdown('level',$this->general_model->dropdown('users_level','Level'),$this->input->get('level'),'class="form-control input-sm" onchange="submit()"')?>
 				</div>
 				<div class="form-group">
-					<?php echo form_dropdown('status',$this->general_model->dropdown('user_status','Status'),$this->input->get('status'),'class="form-control input-sm" onchange="submit()"')?>
+					<?php echo form_dropdown('status',$this->general_model->dropdown('users_status','Status'),$this->input->get('status'),'class="form-control input-sm" onchange="submit()"')?>
 				</div>
 			<?php echo form_close()?>
 			<?php echo form_open($action_delete,array('class'=>'form-check-delete'))?>

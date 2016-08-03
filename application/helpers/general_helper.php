@@ -34,11 +34,11 @@ function pag_tmp(){
 }
 function owner($id){
     $ci =& get_instance();
-    $user_create = $ci->general_model->get_from_field_row('user','id',$id->user_create);
+    $user_create = $ci->general_model->get_from_field_row('users','id',$id->user_create);
     if($user_create){
         $user_create = $user_create->name;
     }
-    $user_update = $ci->general_model->get_from_field_row('user','id',$id->user_update);
+    $user_update = $ci->general_model->get_from_field_row('users','id',$id->user_update);
     if($user_update){
         $user_update = $user_update->name;
     }

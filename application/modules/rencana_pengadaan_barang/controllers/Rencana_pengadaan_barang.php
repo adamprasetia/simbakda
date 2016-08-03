@@ -2,13 +2,14 @@
 
 class Rencana_pengadaan_barang extends MY_Controller 
 {
-	private $title = "Rencana Pengadaan Barang";
-	private $index = "rencana_pengadaan_barang";
+	private $data = array();
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model($this->index.'/model');
+		$this->data['title'] = "Rencana Pengadaan Barang";
+		$this->data['index'] = "rencana_pengadaan_barang";
+		$this->load->model($this->data['index'].'/model');
 	}
 	public function index()
 	{
@@ -16,12 +17,12 @@ class Rencana_pengadaan_barang extends MY_Controller
 		$limit 	= $this->general->get_limit();
 		$total 	= $this->model->count_all();
 
-		$xdata['title'] = $this->title;
-		$xdata['action'] = $this->index.'/search'.get_query_string(null,'offset');
-		$xdata['action_delete'] = $this->index.'/delete'.get_query_string();
-		$xdata['add_btn'] = anchor($this->index.'/add'.get_query_string(),$this->lang->line('new'));
-		$xdata['list_btn'] = anchor($this->index.get_query_string(),$this->lang->line('list'));
-		$xdata['delete_btn'] = '<button id="delete-btn" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> '.$this->lang->line('delete_by_checked').'</button>';
+		$this->data['title'] = $this->data['title'];
+		$this->data['action'] = $this->data['index'].'/search'.get_query_string(null,'offset');
+		$this->data['action_delete'] = $this->data['index'].'/delete'.get_query_string();
+		$this->data['add_btn'] = anchor($this->data['index'].'/add'.get_query_string(),$this->lang->line('new'));
+		$this->data['list_btn'] = anchor($this->data['index'].get_query_string(),$this->lang->line('list'));
+		$this->data['delete_btn'] = '<button id="delete-btn" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> '.$this->lang->line('delete_by_checked').'</button>';
 
 		$this->table->set_template(tbl_tmp());
 		$head_data = array(
@@ -35,7 +36,7 @@ class Rencana_pengadaan_barang extends MY_Controller
 		$heading[] = form_checkbox(array('id'=>'selectAll','value'=>1));
 		$heading[] = '#';
 		foreach($head_data as $r => $value){
-			$heading[] = anchor($this->index.get_query_string(array('order_column'=>"$r",'order_type'=>$this->general->order_type($r))),"$value ".$this->general->order_icon("$r"));
+			$heading[] = anchor($this->data['index'].get_query_string(array('order_column'=>"$r",'order_type'=>$this->general->order_type($r))),"$value ".$this->general->order_icon("$r"));
 		}		
 		$heading[] = $this->lang->line('action');
 		$this->table->set_heading($heading);
@@ -45,41 +46,40 @@ class Rencana_pengadaan_barang extends MY_Controller
 			$this->table->add_row(
 				array('data'=>form_checkbox(array('name'=>'check[]','value'=>$r->id)),'width'=>'10px'),
 				$i++,
-				anchor($this->index.'/edit/'.$r->id.get_query_string(),$r->nomor),
+				anchor($this->data['index'].'/edit/'.$r->id.get_query_string(),$r->nomor),
 				format_dmy($r->tanggal),
 				$r->tahun_anggaran_name,
 				$r->bidang_unit_name,
 				array('data'=>number_format($r->jumlah),'align'=>'right'),
 				array('data'=>number_format($r->total),'align'=>'right'),
-				anchor($this->index.'/edit/'.$r->id.get_query_string(),$this->lang->line('edit'))
-				."&nbsp;|&nbsp;".anchor($this->index.'/delete/'.$r->id.get_query_string(),$this->lang->line('delete'),array('onclick'=>"return confirm('".$this->lang->line('confirm')."')"))
+				anchor($this->data['index'].'/edit/'.$r->id.get_query_string(),$this->lang->line('edit'))
+				."&nbsp;|&nbsp;".anchor($this->data['index'].'/delete/'.$r->id.get_query_string(),$this->lang->line('delete'),array('onclick'=>"return confirm('".$this->lang->line('confirm')."')"))
 			);
 		}
-		$xdata['table'] = $this->table->generate();
-		$xdata['total'] = page_total($offset,$limit,$total);
+		$this->data['table'] = $this->table->generate();
+		$this->data['total'] = page_total($offset,$limit,$total);
 		
 		$config = pag_tmp();
-		$config['base_url'] = $this->index.get_query_string(null,'offset');
+		$config['base_url'] = $this->data['index'].get_query_string(null,'offset');
 		$config['total_rows'] = $total;
 		$config['per_page'] = $limit;
 
 		$this->pagination->initialize($config); 
-		$xdata['pagination'] = $this->pagination->create_links();
+		$this->data['pagination'] = $this->pagination->create_links();
 
-		$data['content'] = $this->load->view($this->index.'/list',$xdata,true);
+		$data['content'] = $this->load->view($this->data['index'].'/list',$this->data,true);
 		$this->load->view('template',$data);
 	}
 	public function search(){
 		$data = array(
 			'search' => $this->input->post('search'),
 			'limit' => $this->input->post('limit'),
-			$this->index_parent => $this->input->post($this->index_parent),
 			'tahun_anggaran' => $this->input->post('tahun_anggaran'),
 			'bidang_unit' => $this->input->post('bidang_unit'),
 			'date_from' => $this->input->post('date_from'),
 			'date_to' => $this->input->post('date_to')
 		);
-		redirect($this->index.get_query_string($data));		
+		redirect($this->data['index'].get_query_string($data));		
 	}
 	private function _field(){
 		$data = array(
@@ -98,15 +98,15 @@ class Rencana_pengadaan_barang extends MY_Controller
 	public function add(){
 		$this->_set_rules();
 		if($this->form_validation->run()===false){
-			$xdata['title'] = $this->title;
-			$xdata['index'] = $this->index;
-			$xdata['add_btn'] = anchor($this->index.'/add'.get_query_string(),$this->lang->line('new'));
-			$xdata['list_btn'] = anchor($this->index.get_query_string(),$this->lang->line('list'));			
-			$xdata['action'] = $this->index.'/add'.get_query_string();
-			$xdata['breadcrumb'] = $this->index.get_query_string();
-			$xdata['heading'] = $this->lang->line('new');
-			$xdata['owner'] = '';
-			$data['content'] = $this->load->view($this->index.'/form',$xdata,true);
+			$this->data['title'] = $this->data['title'];
+			$this->data['index'] = $this->data['index'];
+			$this->data['add_btn'] = anchor($this->data['index'].'/add'.get_query_string(),$this->lang->line('new'));
+			$this->data['list_btn'] = anchor($this->data['index'].get_query_string(),$this->lang->line('list'));			
+			$this->data['action'] = $this->data['index'].'/add'.get_query_string();
+			$this->data['breadcrumb'] = $this->data['index'].get_query_string();
+			$this->data['heading'] = $this->lang->line('new');
+			$this->data['owner'] = '';
+			$data['content'] = $this->load->view($this->data['index'].'/form',$this->data,true);
 			$this->load->view('template',$data);
 		}else{
 			$data = $this->_field();
@@ -115,24 +115,24 @@ class Rencana_pengadaan_barang extends MY_Controller
 			$id = $this->model->add($data);
 			$this->add_detail($id);
 			$this->session->set_flashdata('alert','<div class="alert alert-success">'.$this->lang->line('new_success').'</div>');
-			redirect($this->index.'/add'.get_query_string());
+			redirect($this->data['index'].'/add'.get_query_string());
 		}
 	}
 	public function edit($id){
 		$this->_set_rules();
 		if($this->form_validation->run()===false){
-			$xdata['title'] = $this->title;
-			$xdata['index'] = $this->index;
-			$xdata['row'] = $this->model->get_from_field('id',$id)->row();
-			$xdata['row_detail'] = $this->model->get_from_field_detail('id_parent',$id)->result();
-			$xdata['row']->tanggal = format_dmy($xdata['row']->tanggal);
-			$xdata['add_btn'] = anchor(current_url(),$this->lang->line('edit'));
-			$xdata['list_btn'] = anchor($this->index.get_query_string(),$this->lang->line('list'));
-			$xdata['action'] = $this->index.'/edit/'.$id.get_query_string();
-			$xdata['breadcrumb'] = $this->index.get_query_string();
-			$xdata['heading'] = $this->lang->line('edit');
-			$xdata['owner'] = owner($xdata['row']);
-			$data['content'] = $this->load->view($this->index.'/form',$xdata,true);
+			$this->data['title'] = $this->data['title'];
+			$this->data['index'] = $this->data['index'];
+			$this->data['row'] = $this->model->get_from_field('id',$id)->row();
+			$this->data['row_detail'] = $this->model->get_from_field_detail('id_parent',$id)->result();
+			$this->data['row']->tanggal = format_dmy($this->data['row']->tanggal);
+			$this->data['add_btn'] = anchor(current_url(),$this->lang->line('edit'));
+			$this->data['list_btn'] = anchor($this->data['index'].get_query_string(),$this->lang->line('list'));
+			$this->data['action'] = $this->data['index'].'/edit/'.$id.get_query_string();
+			$this->data['breadcrumb'] = $this->data['index'].get_query_string();
+			$this->data['heading'] = $this->lang->line('edit');
+			$this->data['owner'] = owner($this->data['row']);
+			$data['content'] = $this->load->view($this->data['index'].'/form',$this->data,true);
 			$this->load->view('template',$data);
 		}else{
 			$data = $this->_field();
@@ -142,7 +142,7 @@ class Rencana_pengadaan_barang extends MY_Controller
 			$this->model->delete_detail($id);
 			$this->add_detail($id);
 			$this->session->set_flashdata('alert','<div class="alert alert-success">'.$this->lang->line('edit_success').'</div>');
-			redirect($this->index.'/edit/'.$id.get_query_string());
+			redirect($this->data['index'].'/edit/'.$id.get_query_string());
 		}
 	}
 	public function delete($id=''){
@@ -156,7 +156,7 @@ class Rencana_pengadaan_barang extends MY_Controller
 			}
 		}
 		$this->session->set_flashdata('alert','<div class="alert alert-success">'.$this->lang->line('delete_success').'</div>');
-		redirect($this->index.get_query_string());
+		redirect($this->data['index'].get_query_string());
 	}
 	private function add_detail($id){
 		if($id){				

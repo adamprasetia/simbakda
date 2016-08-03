@@ -105,20 +105,20 @@
             <i class="fa fa-book"></i> <span><?php echo $this->lang->line('menu_reference') ?></span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php echo active_menu('master','barang_jenis')?>"><?php echo anchor('master/barang_jenis','<i class="fa fa-circle-o"></i> Jenis Barang')?></li>
-            <li class="<?php echo active_menu('master','provinsi')?>"><?php echo anchor('master/provinsi','<i class="fa fa-circle-o"></i> Provinsi')?></li>
-            <li class="<?php echo active_menu('master','pemilik')?>"><?php echo anchor('master/pemilik','<i class="fa fa-circle-o"></i> Pemilik')?></li>
-            <li class="<?php echo active_menu('master','bidang')?>"><?php echo anchor('master/bidang','<i class="fa fa-circle-o"></i> Bidang')?></li>
-            <li class="<?php echo active_menu('master','satuan')?>"><?php echo anchor('master/satuan','<i class="fa fa-circle-o"></i> Satuan')?></li>
-            <li class="<?php echo active_menu('master','warna')?>"><?php echo anchor('master/warna','<i class="fa fa-circle-o"></i> Warna')?></li>
-            <li class="<?php echo active_menu('master','pangkat')?>"><?php echo anchor('master/pangkat','<i class="fa fa-circle-o"></i> Pangkat')?></li>
-            <li class="<?php echo active_menu('master','perusahaan_bentuk')?>"><?php echo anchor('master/perusahaan_bentuk','<i class="fa fa-circle-o"></i> Bentuk Perusahaan')?></li>
-            <li class="<?php echo active_menu('master','bank')?>"><?php echo anchor('master/bank','<i class="fa fa-circle-o"></i> Bank')?></li>
-            <li class="<?php echo active_menu('master','tahun_anggaran')?>"><?php echo anchor('master/tahun_anggaran','<i class="fa fa-circle-o"></i> Tahun Anggaran')?></li>
+            <li class="<?php echo active_menu('reference','barang_jenis')?>"><?php echo anchor('reference/barang_jenis','<i class="fa fa-circle-o"></i> Jenis Barang')?></li>
+            <li class="<?php echo active_menu('reference','provinsi')?>"><?php echo anchor('reference/provinsi','<i class="fa fa-circle-o"></i> Provinsi')?></li>
+            <li class="<?php echo active_menu('reference','pemilik')?>"><?php echo anchor('reference/pemilik','<i class="fa fa-circle-o"></i> Pemilik')?></li>
+            <li class="<?php echo active_menu('reference','bidang')?>"><?php echo anchor('reference/bidang','<i class="fa fa-circle-o"></i> Bidang')?></li>
+            <li class="<?php echo active_menu('reference','satuan')?>"><?php echo anchor('reference/satuan','<i class="fa fa-circle-o"></i> Satuan')?></li>
+            <li class="<?php echo active_menu('reference','warna')?>"><?php echo anchor('reference/warna','<i class="fa fa-circle-o"></i> Warna')?></li>
+            <li class="<?php echo active_menu('reference','pangkat')?>"><?php echo anchor('reference/pangkat','<i class="fa fa-circle-o"></i> Pangkat')?></li>
+            <li class="<?php echo active_menu('reference','perusahaan_bentuk')?>"><?php echo anchor('reference/perusahaan_bentuk','<i class="fa fa-circle-o"></i> Bentuk Perusahaan')?></li>
+            <li class="<?php echo active_menu('reference','bank')?>"><?php echo anchor('reference/bank','<i class="fa fa-circle-o"></i> Bank')?></li>
+            <li class="<?php echo active_menu('reference','tahun_anggaran')?>"><?php echo anchor('reference/tahun_anggaran','<i class="fa fa-circle-o"></i> Tahun Anggaran')?></li>
           </ul>
         </li> 
         <?php if ($this->user_login['level']==1): ?>          
-        <li class="treeview <?php echo active_menu('user')?>"><?php echo anchor('user','<i class="fa fa-user"></i> <span>'.$this->lang->line('menu_user').'</span>')?></li>
+        <li class="treeview <?php echo active_menu('users')?>"><?php echo anchor('users','<i class="fa fa-user"></i> <span>'.$this->lang->line('menu_user').'</span>')?></li>
         <?php endif ?>                       
       </ul>
     </section>

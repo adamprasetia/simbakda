@@ -53,9 +53,9 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['master/(:any)/search'] 			= 'master/search';
-$route['master/(:any)/add'] 			= 'master/add';
-$route['master/(:any)/edit/(:num)'] 	= 'master/edit/$2';
-$route['master/(:any)/delete/(:num)']	= 'master/delete/$2';
-$route['master/(:any)/delete']			= 'master/delete';
-$route['master/(:any)'] 				= 'master/index';
+$route['reference/(:any)/search'] = 'reference/search';
+$route['reference/(:any)/add'] = 'reference/add';
+$route['reference/(:any)/edit/(:num)'] = 'reference/edit/$2';
+$route['reference/(:any)/delete/(:num)'] = 'reference/delete/$2';
+$route['reference/(:any)/delete'] = 'reference/delete';
+$route['reference/(:any)'] = 'reference/index';

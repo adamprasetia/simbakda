@@ -1,12 +1,12 @@
-<section class="content-header">
+	<section class="content-header">
 	<h1>
-		User
-		<small><?php echo $heading?></small>
+		<?php echo $title ?>
+		<small><?php echo $subtitle?></small>
 	</h1>
 	<ol class="breadcrumb">
 		<li><?php echo anchor('home','<span class="glyphicon glyphicon-home"></span> '.$this->lang->line('home'))?></li>
-	  <li><?php echo anchor($breadcrumb,$this->lang->line('list'))?></li>
-	  <li class="active"><?php echo $heading?></li>
+		<li><?php echo anchor($breadcrumb,$this->lang->line('list'))?></li>
+		<li class="active"><?php echo $title?></li>
 	</ol>
 </section>
 <section class="content">
@@ -15,7 +15,7 @@
 		<li role="presentation"><?php echo $list_btn ?></li>
 	</ul>
 	<?php echo $this->session->flashdata('alert')?>
-	<?php echo form_open_multipart($action)?>
+	<?php echo form_open($action)?>
 	<div class="box box-default">
 		<div class="box-header owner">
 			<?php echo $owner?>
@@ -50,12 +50,12 @@
 			<hr>
 			<div class="form-group form-inline">
 				<?php echo form_label('Level','level',array('class'=>'control-label'))?>
-				<?php echo form_dropdown('level',$this->general_model->dropdown('user_level','Level'),set_value('level',(isset($row->level)?$row->level:'')),'required=required class="form-control input-sm"')?>
+				<?php echo form_dropdown('level',$this->general_model->dropdown('users_level','Level'),set_value('level',(isset($row->level)?$row->level:'')),'required=required class="form-control input-sm"')?>
 				<small><?php echo form_error('level')?></small>
 			</div>
 			<div class="form-group form-inline">
 				<?php echo form_label('Status','status',array('class'=>'control-label'))?>
-				<?php echo form_dropdown('status',$this->general_model->dropdown('user_status','Status'),set_value('status',(isset($row->status)?$row->status:'')),'required=required class="form-control input-sm"')?>
+				<?php echo form_dropdown('status',$this->general_model->dropdown('users_status','Status'),set_value('status',(isset($row->status)?$row->status:'')),'required=required class="form-control input-sm"')?>
 				<small><?php echo form_error('status')?></small>
 			</div>
 		</div>

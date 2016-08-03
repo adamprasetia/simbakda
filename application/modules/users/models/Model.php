@@ -1,17 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_model extends CI_Model {
-	private $tbl_name = 'user';
+class Model extends CI_Model
+{
+	private $tbl_name = 'users';
 	private $tbl_key 	= 'id';
-	public function query(){
+
+	public function query()
+	{
 		$data[] = $this->db->select(array(
 			'a.*',
 			'b.name as level_name',
 			'c.name as status_name'
 		));
-		$data[] = $this->db->from('user a');
-		$data[] = $this->db->join('user_level b','a.level = b.code');
-		$data[] = $this->db->join('user_status c','a.status = c.code');
+		$data[] = $this->db->from($this->tbl_name.' a');
+		$data[] = $this->db->join($this->tbl_name.'_level b','a.level = b.code');
+		$data[] = $this->db->join($this->tbl_name.'_status c','a.status = c.code');
 		$data[] = $this->search();
 		if($this->input->get('level') <> '')
 			$data[] = $this->db->where('a.level',$this->input->get('level'));
@@ -26,6 +29,10 @@ class User_model extends CI_Model {
 		$this->db->limit($this->general->get_limit());
 		return $this->db->get();
 	}
+	public function get_from_field($field,$value){
+		$this->db->where($field,$value);
+		return $this->db->get($this->tbl_name);	
+	}
 	public function add($data){
 		$this->db->insert($this->tbl_name,$data);
 	}
@@ -37,10 +44,6 @@ class User_model extends CI_Model {
 		$this->db->where($this->tbl_key,$id);
 		$this->db->delete($this->tbl_name);
 	}
-	public function get_from_field($field,$value){
-		$this->db->where($field,$value);
-		return $this->db->get($this->tbl_name);	
-	}
 	public function count_all(){
 		$this->query();
 		return $this->db->get()->num_rows();
@@ -48,7 +51,7 @@ class User_model extends CI_Model {
 	public function search(){
 		$result = $this->input->get('search');
 		if($result <> ''){
-			return $this->db->where('(A.name like "%'.$result.'%" or A.username like "%'.$result.'%")');
+			return $this->db->where('(a.name like "%'.$result.'%" or a.username like "%'.$result.'%")');
 		}		
 	}
 }

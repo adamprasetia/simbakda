@@ -1,8 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Change_password extends MY_Controller {
-	public function index(){
+class Change_password extends MY_Controller 
+{
+	public function index()
+	{
 		$this->form_validation->set_rules('old_pass','Old Password','required|trim|callback__check_old_pass');
 		$this->form_validation->set_rules('new_pass','New Password','required|trim');
 		$this->form_validation->set_rules('con_pass','Confirm Password','required|trim|matches[new_pass]');
@@ -18,8 +20,9 @@ class Change_password extends MY_Controller {
 			redirect('change_password');
 		}
 	}
-	public function _check_old_pass(){
-		$result = $this->general_model->get_from_field('user','id',$this->user_login['id']);
+	public function _check_old_pass()
+	{
+		$result = $this->general_model->get_from_field('users','id',$this->user_login['id']);
 		if($result->num_rows() > 0){
 			$old_pass = $result->row()->password;
 			if($old_pass == md5($this->input->post('old_pass'))){
