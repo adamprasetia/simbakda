@@ -98,6 +98,7 @@
           <ul class="treeview-menu">
             <li class="<?php echo active_menu('rencana_pengadaan_barang')?>"><?php echo anchor('rencana_pengadaan_barang','<i class="fa fa-circle-o"></i> Rencana Pengadaan Barang')?></li>
             <li class="<?php echo active_menu('rencana_pemeliharaan_barang')?>"><?php echo anchor('rencana_pemeliharaan_barang','<i class="fa fa-circle-o"></i> Rencana Pemeliharaan Barang')?></li>
+            <li class="<?php echo active_menu('formulir_isian_pengadaan_barang')?>"><?php echo anchor('formulir_isian_pengadaan_barang','<i class="fa fa-circle-o"></i> Formulir Isisan Pengadaan Barang')?></li>
           </ul>
         </li> 
         <li class="treeview">
@@ -115,6 +116,10 @@
             <li class="<?php echo active_menu('reference','perusahaan_bentuk')?>"><?php echo anchor('reference/perusahaan_bentuk','<i class="fa fa-circle-o"></i> Bentuk Perusahaan')?></li>
             <li class="<?php echo active_menu('reference','bank')?>"><?php echo anchor('reference/bank','<i class="fa fa-circle-o"></i> Bank')?></li>
             <li class="<?php echo active_menu('reference','tahun_anggaran')?>"><?php echo anchor('reference/tahun_anggaran','<i class="fa fa-circle-o"></i> Tahun Anggaran')?></li>
+            <li class="<?php echo active_menu('reference','jenis_dana')?>"><?php echo anchor('reference/jenis_dana','<i class="fa fa-circle-o"></i> Jenis Dana')?></li>
+            <li class="<?php echo active_menu('reference','bukti_pembayaran')?>"><?php echo anchor('reference/bukti_pembayaran','<i class="fa fa-circle-o"></i> Bukti Pembayaran')?></li>
+            <li class="<?php echo active_menu('reference','cara_perolehan')?>"><?php echo anchor('reference/cara_perolehan','<i class="fa fa-circle-o"></i> Cara Perolehan')?></li>
+            <li class="<?php echo active_menu('reference','dasar_perolehan')?>"><?php echo anchor('reference/dasar_perolehan','<i class="fa fa-circle-o"></i> Dasar Perolehan')?></li>
           </ul>
         </li> 
         <?php if ($this->user_login['level']==1): ?>          

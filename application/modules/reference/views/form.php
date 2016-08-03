@@ -23,7 +23,7 @@
 		<div class="box-body">
 			<div class="form-group form-inline">
 				<?php echo form_label($this->lang->line('code'),'code',array('class'=>'control-label'))?>
-				<?php echo form_input(array('name'=>'code','class'=>'form-control input-sm','maxlength'=>'15','size'=>'10','autocomplete'=>'off','value'=>set_value('code',(isset($row->code)?$row->code:'')),'required'=>'required'))?>
+				<?php echo form_input(array('name'=>'code','class'=>'form-control input-sm','maxlength'=>'15','size'=>'10','autocomplete'=>'off','value'=>set_value('code',(isset($row->code)?$row->code:'')),'required'=>'required','autofocus'=>'on'))?>
 				<small><?php echo form_error('code')?></small>
 			</div>
 			<div class="form-group form-inline">
