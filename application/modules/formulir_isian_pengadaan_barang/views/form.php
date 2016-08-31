@@ -124,10 +124,10 @@
 			Detail Barang
 		</div>
 		<div class="box-body">
+			<button id="add-detail-btn" type="button" class="btn btn-primary btn-sm">
+				<span class="glyphicon glyphicon-plus"></span> <?php echo $this->lang->line('new') ?>
+			</button>			
 			<div class="table-responsive form-inline">
-				<button type="button" class="btn btn-primary btn-sm" onclick="add_detail()">
-					<span class="glyphicon glyphicon-plus"></span> <?php echo $this->lang->line('new') ?>
-				</button>			
 				<table id="detail-table" class="table table-bordered">
 					<tr>
 						<th>Kode Barang</th>
@@ -136,7 +136,10 @@
 						<th>Jumlah</th>
 						<th>Harga</th>
 						<th>Total</th>
-						<th>Rekening</th>
+						<th>Invent</th>
+						<th>No SP2D</th>
+						<th>Tgl SP2D</th>
+						<th>PPN</th>
 						<th>Keterangan</th>
 						<th><?php echo $this->lang->line('action') ?></th>
 					</tr>
@@ -147,7 +150,10 @@
 								<input type="hidden" name="merk[]" value="<?php echo $row->merk ?>">
 								<input type="hidden" name="jumlah[]" value="<?php echo $row->jumlah ?>">
 								<input type="hidden" name="harga[]" value="<?php echo $row->harga ?>">
-								<input type="hidden" name="rekening[]" value="<?php echo $row->rekening ?>">
+								<input type="hidden" name="invent[]" value="<?php echo $row->invent ?>">
+								<input type="hidden" name="no_sp2d[]" value="<?php echo $row->no_sp2d ?>">
+								<input type="hidden" name="tgl_sp2d[]" value="<?php echo format_dmy($row->tgl_sp2d) ?>">
+								<input type="hidden" name="ppn[]" value="<?php echo $row->ppn ?>">
 								<input type="hidden" name="keterangan[]" value="<?php echo $row->keterangan ?>">
 
 								<td class="kode_barang"><?php echo $row->kode_barang ?></td>
@@ -156,12 +162,15 @@
 								<td class="jumlah" align="right"><?php echo number_format($row->jumlah) ?></td>
 								<td class="harga" align="right"><?php echo number_format($row->harga) ?></td>
 								<td class="total" align="right"><?php echo number_format($row->jumlah*$row->harga) ?></td>
-								<td class="rekening"><?php echo $row->rekening ?></td>
+								<td class="invent"><?php echo $row->invent ?></td>
+								<td class="no_sp2d"><?php echo $row->no_sp2d ?></td>
+								<td class="tgl_sp2d"><?php echo format_dmy($row->tgl_sp2d) ?></td>
+								<td class="ppn"><?php echo number_format($row->ppn) ?></td>
 								<td class="keterangan"><?php echo $row->keterangan ?></td>
 								<td>
-									<button type="button" onclick="edit_detail(this)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> <?php echo $this->lang->line("edit") ?></button>
+									<button type="button" onclick="detail.editDetail(this)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> <?php echo $this->lang->line("edit") ?></button>
 									&nbsp;
-									<button type="button" onclick="delete_detail(this)" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> <?php echo $this->lang->line("delete") ?></button>
+									<button type="button" onclick="detail.deleteDetail(this)" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> <?php echo $this->lang->line("delete") ?></button>
 								</td>
 							</tr>							
 						<?php $total_all+=$row->jumlah*$row->harga;endforeach ?>
@@ -194,7 +203,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->lang->line('cancel') ?></button>
-        <button id="save-modal" type="button" class="btn btn-primary" ><?php echo $this->lang->line('save') ?></button>
+        <button id="save-detail-btn" type="button" class="btn btn-primary" ><?php echo $this->lang->line('save') ?></button>
       </div>
     </div>
   </div>
@@ -225,106 +234,47 @@
 
 	    return formated_number;
 	}		
-	function add_detail(){
-		$('#save-modal').attr("onclick","do_add_detail()");
-		$('#kode_barang').val("").trigger("change");
-		$('#merk').val("");
-		$('#jumlah').val("");
-		$('#harga').val("");
-		$('#total').val("");
-		$('#rekening').val("");
-		$('#keterangan').val("");
-		$('#detail-modal').modal('show');
+	var detail = {
+		field:['kode_barang','merk','jumlah','harga','total','invent','no_sp2d','tgl_sp2d','ppn','keterangan'],
+		addDetailBtn : $('#add-detail-btn')
 	}
-	function do_add_detail(){		
-		var kode_barang = $('#kode_barang').val();
-		var nama_barang = $('#kode_barang option:selected').text();
-		nama_barang = nama_barang.split(" - ");
-		nama_barang = nama_barang[1];
-		var merk = $('#merk').val();
-		var jumlah = $('#jumlah').val();
-		var harga = $('#harga').val();
-		var total = $('#total').val();
-		var rekening = $('#rekening').val();
-		var keterangan = $('#keterangan').val();
-		$('#detail-table').append(
-			'<tr>'
-			+'<input type="hidden" name="kode_barang[]" value="'+kode_barang+'">'
-			+'<input type="hidden" name="merk[]" value="'+merk+'">'
-			+'<input type="hidden" name="jumlah[]" value="'+jumlah+'">'
-			+'<input type="hidden" name="harga[]" value="'+harga+'">'
-			+'<input type="hidden" name="rekening[]" value="'+rekening+'">'
-			+'<input type="hidden" name="keterangan[]" value="'+keterangan+'">'
-				+'<td class="kode_barang">'+kode_barang+'</td>'
-				+'<td class="nama_barang">'+nama_barang+'</td>'
-				+'<td class="merk">'+merk+'</td>'
-				+'<td class="jumlah" align="right">'+jumlah+'</td>'
-				+'<td class="harga" align="right">'+harga+'</td>'
-				+'<td class="total" align="right">'+total+'</td>'
-				+'<td class="rekening">'+rekening+'</td>'
-				+'<td class="keterangan">'+keterangan+'</td>'
-				+'<td><button type="button" onclick="edit_detail(this)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> <?php echo $this->lang->line("edit") ?></button>&nbsp;'
-				+'<button type="button" onclick="delete_detail(this)" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> <?php echo $this->lang->line("delete") ?></button></td>'
-			+'</tr>'
-		);
-		total_all();
-		$('#detail-modal').modal('hide');
-	}
-	function edit_detail(t){
-		$('#save-modal').attr("onclick","do_edit_detail()");
-		var index = $("#detail-table tr").index($(t).parent().parent());
-		var kode_barang = $(t).parent().parent().find('td.kode_barang').html();
-		var merk = $(t).parent().parent().find('td.merk').html();
-		var jumlah = $(t).parent().parent().find('td.jumlah').html();
-		var harga = $(t).parent().parent().find('td.harga').html();
-		var total = $(t).parent().parent().find('td.total').html();
-		var rekening = $(t).parent().parent().find('td.rekening').html();
-		var keterangan = $(t).parent().parent().find('td.keterangan').html();
-		$('#index').val(index);
-		$('#kode_barang').val(kode_barang).trigger("change");
-		$('#merk').val(merk);
-		$('#jumlah').val(jumlah);
-		$('#harga').val(harga);
-		$('#total').val(total);
-		$('#rekening').val(rekening);
-		$('#keterangan').val(keterangan);
+
+	detail.addDetailBtn.click(function(){
+		detail.addDetail();
+	});
+
+	detail.addDetail = function(){
+		$('#save-detail-btn').attr("onclick","detail.doAddDetail()");
+		detail.field.forEach(function(item,index){
+			if (item=='kode_barang') {
+				$('#kode_barang').val("").trigger("change");
+			}else{
+				$('#'+item).val("");
+			}
+		});
 		$('#detail-modal').modal('show');
-	}		
-	function do_edit_detail(){
-		var index = $('#index').val();
-		var kode_barang = $('#kode_barang').val();
-		var nama_barang = $('#kode_barang option:selected').text();
-		nama_barang = nama_barang.split(" - ");
-		nama_barang = nama_barang[1];
-		var merk = $('#merk').val();
-		var jumlah = $('#jumlah').val();
-		var harga = $('#harga').val();
-		var total = $('#total').val();
-		var rekening = $('#rekening').val();
-		var keterangan = $('#keterangan').val();
-		var parent = $('#detail-table tbody tr:nth-child('+(parseInt(index)+1)+')'); 
-		parent.find('td.kode_barang').html(kode_barang);
-		parent.find('td.nama_barang').html(nama_barang);
-		parent.find('td.merk').html(merk);
-		parent.find('td.jumlah').html(jumlah);
-		parent.find('td.harga').html(harga);
-		parent.find('td.total').html(total);
-		parent.find('td.rekening').html(rekening);
-		parent.find('td.keterangan').html(keterangan);
-		parent.find('input[name="kode_barang[]"]').val(kode_barang);
-		parent.find('input[name="merk[]"]').val(merk);
-		parent.find('input[name="jumlah[]"]').val(jumlah);
-		parent.find('input[name="harga[]"]').val(harga);
-		parent.find('input[name="rekening[]"]').val(rekening);
-		parent.find('input[name="keterangan[]"]').val(keterangan);
-		total_all();
+	};
+
+	detail.doAddDetail = function(){
+		var hiddenVar,rowVar;
+		detail.field.forEach(function(item,index){
+			hiddenVar += '<input type="hidden" name="'+item+'[]" value="'+$('#'+item).val()+'">';
+			rowVar += '<td class="'+item+'">'+$('#'+item).val()+'</td>';				
+			if (item=='kode_barang') {
+				var nama_barang = $('#kode_barang option:selected').text();
+				nama_barang = nama_barang.split(" - ");
+				nama_barang = nama_barang[1];
+				rowVar += '<td class="nama_barang">'+nama_barang+'</td>';
+			}
+		});
+		$('#detail-table').append('<tr>'+hiddenVar+rowVar
+			+'<td><button type="button" onclick="detail.editDetail(this)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> <?php echo $this->lang->line("edit") ?></button>&nbsp;'
+			+'<button type="button" onclick="detail.deleteDetail(this)" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> <?php echo $this->lang->line("delete") ?></button></td>'			
+			+'</tr>');
 		$('#detail-modal').modal('hide');
-	}	
-	function delete_detail(t){
-		$(t).parent().parent().remove();
-		total_all();
-	}		
-	function total_all(){
+	};
+
+	detail.totalAll = function(){
 		var count = $('#detail-table tbody tr').length; 
 		var total = 0;
 		for (var i = 2; i <= count; i++) {
@@ -333,5 +283,50 @@
 			total += parseInt(tot.replace(/,/gi, '')); 
 		}
 		$('#total_all').html('Total : <strong>'+number_format(total.toString())+'</strong>');
-	}
+	};
+
+	detail.editDetail = function(t){
+		$('#save-detail-btn').attr("onclick","detail.doEditDetail()");
+		var index = $("#detail-table tr").index($(t).parent().parent());
+		$('#index').val(index);
+
+		detail.field.forEach(function(item,index){
+			if (item=='kode_barang') {
+				var kode_barang = $(t).parent().parent().find('td.kode_barang').html();
+				$('#kode_barang').val(kode_barang).trigger("change");
+			}else{
+				var value = $(t).parent().parent().find('td.'+item).html();
+				$('#'+item).val(value);
+			}
+		});
+		
+		$('#detail-modal').modal('show');
+	};
+
+	detail.doEditDetail = function(){
+		var index = $('#index').val();
+		var parent = $('#detail-table tbody tr:nth-child('+(parseInt(index)+1)+')'); 
+		detail.field.forEach(function(item,index){
+			if (item=='kode_barang') {
+				var kode_barang = $('#kode_barang').val();
+				parent.find('td.kode_barang').html(kode_barang);
+				parent.find('input[name="kode_barang[]"]').val(kode_barang);
+				var nama_barang = $('#kode_barang option:selected').text();
+				nama_barang = nama_barang.split(" - ");
+				nama_barang = nama_barang[1];
+				parent.find('td.nama_barang').html(nama_barang);
+			}else{
+				var value = $('#'+item).val();
+				parent.find('td.'+item).html(value);
+				parent.find('input[name="'+item+'[]"]').val(value);
+			}
+		});
+
+		detail.totalAll();
+		$('#detail-modal').modal('hide');
+	};
+	detail.deleteDetail = function(t){
+		$(t).parent().parent().remove();
+		detail.totalAll();
+	}		
 </script>

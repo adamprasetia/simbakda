@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>"/>
   
   <script type="text/javascript" src="<?php echo base_url("assets/plugins/AdminLTE-2.3.3/plugins/jQuery/jQuery-2.2.0.min.js") ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url("assets/plugins/AdminLTE-2.3.3/plugins/slimScroll/jquery.slimscroll.min.js") ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/plugins/select2-4.0.3/js/select2.min.js')?>"/></script>
   <script type="text/javascript" src="<?php echo base_url("assets/plugins/jquery-ui-1.11.2/jquery-ui.min.js") ?>"></script>
   <script type="text/javascript" src="<?php echo base_url("assets/plugins/AdminLTE-2.3.3/bootstrap/js/bootstrap.min.js") ?>"></script>
@@ -23,7 +24,7 @@
   <script type="text/javascript" src="<?php echo base_url('assets/plugins/price_format_plugin.js')?>"/></script>
   <script type="text/javascript" src="<?php echo base_url('assets/js/general.js')?>"/></script>  
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini">
 <div class="wrapper">
   <header class="main-header">
     <a href="<?php echo base_url() ?>" class="logo">

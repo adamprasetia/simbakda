@@ -25,6 +25,7 @@ class Formulir_isian_pengadaan_barang extends MY_Controller
 		$this->data['delete_btn'] = '<button id="delete-btn" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> '.$this->lang->line('delete_by_checked').'</button>';
 
 		$this->table->set_template(tbl_tmp());
+		
 		$head_data = array(
 			'nomor' => 'Nomor',
 			'name' => 'Tanggal',
@@ -176,7 +177,10 @@ class Formulir_isian_pengadaan_barang extends MY_Controller
 			$merk = $this->input->post('merk');
 			$jumlah = $this->input->post('jumlah');
 			$harga = $this->input->post('harga');
-			$rekening = $this->input->post('rekening');
+			$invent = $this->input->post('invent');
+			$no_sp2d = $this->input->post('no_sp2d');
+			$tgl_sp2d = $this->input->post('tgl_sp2d');
+			$ppn = $this->input->post('ppn');
 			$keterangan = $this->input->post('keterangan');
 			if($kode_barang){
 				$i=0;
@@ -188,7 +192,10 @@ class Formulir_isian_pengadaan_barang extends MY_Controller
 						'merk' => $merk[$i],
 						'jumlah' => str_replace(',', '', $jumlah[$i]),
 						'harga' => str_replace(',', '', $harga[$i]),
-						'rekening' => $rekening[$i],
+						'invent' => $invent[$i],
+						'no_sp2d' => $no_sp2d[$i],
+						'tgl_sp2d' => format_ymd($tgl_sp2d[$i]),
+						'ppn' => $ppn[$i],
 						'keterangan' => $keterangan[$i],
 						'user_create' => $this->user_login['id'],
 						'date_create' => date('Y-m-d H:i:s')
