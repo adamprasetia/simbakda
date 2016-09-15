@@ -5,6 +5,10 @@
 			<?php echo form_label($f['name'],$f['id'],array('class'=>'control-label'))?>
 			<?php echo form_input(array('id'=>$f['id'],'name'=>$f['id'],'class'=>'form-control input-sm','maxlength'=>$f['size'],'size'=>$f['width'],'autocomplete'=>'off','value'=>set_value($f['id'],(isset($row->{$f['id']})?$row->{$f['id']}:''))))?>
 			<small><?php echo form_error($f['id'])?></small>
+		<?php elseif ($f['type']=='memo'): ?>
+			<?php echo form_label($f['name'],$f['id'],array('class'=>'control-label'))?>
+			<?php echo form_textarea(array('id'=>$f['id'],'name'=>$f['id'],'class'=>'form-control input-sm','maxlength'=>$f['size'],'size'=>$f['width'],'autocomplete'=>'off','cols'=>'100','rows'=>'3','value'=>set_value($f['id'],(isset($row->{$f['id']})?$row->{$f['id']}:''))))?>
+			<small><?php echo form_error($f['id'])?></small>
 		<?php elseif ($f['type']=='date'): ?>
 			<?php echo form_label($f['name'],$f['id'],array('class'=>'control-label'))?>
 			<?php echo form_input(array('id'=>$f['id'],'name'=>$f['id'],'class'=>'form-control input-sm input-tanggal','maxlength'=>$f['size'],'size'=>$f['width'],'autocomplete'=>'off','value'=>set_value($f['id'],(isset($row->{$f['id']})?format_dmy($row->{$f['id']}):''))))?>

@@ -74,7 +74,7 @@ class General{
 		$data = array();
 		foreach ($field as $row) {
 			if ($row['field']) {
-				if ($row['type']=='string') {
+				if ($row['type']=='string' || $row['type']=='memo') {
 					$data[$row['id']] = strtoupper($this->ci->input->post($row['id']));	
 				} elseif ($row['type']=='number') {
 					$data[$row['id']] = str_replace(",", "", $this->ci->input->post($row['id']));
@@ -122,7 +122,7 @@ class General{
 				$field_detail['id_parent'] = $id;
 				foreach ($field as $rows) {
 					if ($rows['field']) {
-						if ($rows['type']=='string') {
+						if ($rows['type']=='string' || $rows['type']=='memo') {
 							$field_detail[$rows['id']] = strtoupper($field_input[$rows['id']][$i]);
 						}elseif ($rows['type']=='date') {
 							$field_detail[$rows['id']] = format_ymd($field_input[$rows['id']][$i]);

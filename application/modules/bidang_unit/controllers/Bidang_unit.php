@@ -11,10 +11,10 @@ class Bidang_unit extends MY_Controller
 		$this->data['subtitle'] = "(Pengolahan Data Unit Bidang)";
 		$this->data['index'] = "bidang_unit";
 		$this->data['field'] = array(
-			array('id'=>'code','name'=>$this->lang->line('code'),'type'=>'string','size'=>15,'table'=>true,'filter'=>true,'field'=>true,'rules'=>'required|trim|callback_double_check[code]'),
-			array('id'=>'name','name'=>$this->lang->line('name'),'type'=>'string','size'=>100,'table'=>true,'filter'=>true,'field'=>true,'rules'=>'required|trim'),
-			array('id'=>'bidang','name'=>'Bidang','type'=>'dropdown','size'=>15,'table'=>false,'filter'=>true,'field'=>true,'rules'=>'required|trim'),
-			array('id'=>'bidang_name','name'=>'Bidang','type'=>'string','size'=>100,'table'=>true,'filter'=>false,'field'=>false,'rules'=>false)
+			array('id'=>'code','name'=>$this->lang->line('code'),'type'=>'string','size'=>15,'width'=>15,'table'=>true,'filter'=>true,'field'=>true,'rules'=>'required|trim|callback_double_check[code]'),
+			array('id'=>'name','name'=>$this->lang->line('name'),'type'=>'string','size'=>100,'width'=>50,'table'=>true,'filter'=>true,'field'=>true,'rules'=>'required|trim'),
+			array('id'=>'bidang','name'=>'Bidang','type'=>'dropdown','size'=>15,'width'=>15,'table'=>false,'filter'=>true,'field'=>true,'rules'=>'required|trim'),
+			array('id'=>'bidang_name','name'=>'Bidang','type'=>'string','size'=>100,'width'=>100,'table'=>true,'filter'=>false,'field'=>false,'rules'=>false)
 		);
 	}
 	public function index()

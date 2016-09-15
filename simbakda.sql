@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `barang` (
   KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8606 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.barang: ~8.396 rows (approximately)
+-- Dumping data for table simbakda.barang: ~8.395 rows (approximately)
 /*!40000 ALTER TABLE `barang` DISABLE KEYS */;
 INSERT INTO `barang` (`id`, `code`, `name`, `parent`, `type`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(1, '01', 'GOLONGAN TANAH', '01', '01', 0, '0000-00-00 00:00:00', 12, '2016-06-24 11:33:32'),
@@ -8725,7 +8725,7 @@ CREATE TABLE IF NOT EXISTS `bidang_unit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(15) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `parent` varchar(15) NOT NULL,
+  `bidang` varchar(15) NOT NULL,
   `user_create` int(11) NOT NULL,
   `date_create` datetime NOT NULL,
   `user_update` int(11) NOT NULL,
@@ -8736,8 +8736,8 @@ CREATE TABLE IF NOT EXISTS `bidang_unit` (
 
 -- Dumping data for table simbakda.bidang_unit: ~0 rows (approximately)
 /*!40000 ALTER TABLE `bidang_unit` DISABLE KEYS */;
-INSERT INTO `bidang_unit` (`id`, `code`, `name`, `parent`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(8607, '50.01', 'DISTRIK', '50', 12, '2016-06-27 14:21:07', 12, '2016-06-27 14:21:13');
+INSERT INTO `bidang_unit` (`id`, `code`, `name`, `bidang`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
+	(8607, '50.01', 'DISTRIK', '50', 12, '2016-06-27 14:21:07', 12, '2016-08-23 13:09:26');
 /*!40000 ALTER TABLE `bidang_unit` ENABLE KEYS */;
 
 
@@ -8746,7 +8746,7 @@ CREATE TABLE IF NOT EXISTS `bidang_unit_kerja` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(15) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `parent` varchar(15) NOT NULL,
+  `bidang_unit` varchar(15) NOT NULL,
   `user_create` int(11) NOT NULL,
   `date_create` datetime NOT NULL,
   `user_update` int(11) NOT NULL,
@@ -8757,8 +8757,8 @@ CREATE TABLE IF NOT EXISTS `bidang_unit_kerja` (
 
 -- Dumping data for table simbakda.bidang_unit_kerja: ~0 rows (approximately)
 /*!40000 ALTER TABLE `bidang_unit_kerja` DISABLE KEYS */;
-INSERT INTO `bidang_unit_kerja` (`id`, `code`, `name`, `parent`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(8607, '50.01.30', 'PENGAIRAN', '50.01', 12, '2016-06-27 14:26:14', 12, '2016-06-27 14:38:12');
+INSERT INTO `bidang_unit_kerja` (`id`, `code`, `name`, `bidang_unit`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
+	(8607, '50.01.30', 'PENGAIRAN', '50.01', 12, '2016-06-27 14:26:14', 12, '2016-09-16 04:59:12');
 /*!40000 ALTER TABLE `bidang_unit_kerja` ENABLE KEYS */;
 
 
@@ -8767,7 +8767,7 @@ CREATE TABLE IF NOT EXISTS `bidang_unit_kerja_lokasi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(15) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `parent` varchar(15) NOT NULL,
+  `bidang_unit_kerja` varchar(15) NOT NULL,
   `user_create` int(11) NOT NULL,
   `date_create` datetime NOT NULL,
   `user_update` int(11) NOT NULL,
@@ -8778,7 +8778,7 @@ CREATE TABLE IF NOT EXISTS `bidang_unit_kerja_lokasi` (
 
 -- Dumping data for table simbakda.bidang_unit_kerja_lokasi: ~0 rows (approximately)
 /*!40000 ALTER TABLE `bidang_unit_kerja_lokasi` DISABLE KEYS */;
-INSERT INTO `bidang_unit_kerja_lokasi` (`id`, `code`, `name`, `parent`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
+INSERT INTO `bidang_unit_kerja_lokasi` (`id`, `code`, `name`, `bidang_unit_kerja`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(8607, '50.01.30.01', 'SEKSI PEMBANGUNAN, PEMELIHARAAN JALAN DAN JEMBATAN', '50.01.30', 12, '2016-06-27 14:37:54', 12, '2016-06-27 14:39:09');
 /*!40000 ALTER TABLE `bidang_unit_kerja_lokasi` ENABLE KEYS */;
 
@@ -8788,7 +8788,7 @@ CREATE TABLE IF NOT EXISTS `bidang_unit_kerja_ruangan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(15) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `parent` varchar(15) NOT NULL,
+  `bidang_unit_kerja` varchar(15) NOT NULL,
   `user_create` int(11) NOT NULL,
   `date_create` datetime NOT NULL,
   `user_update` int(11) NOT NULL,
@@ -8799,8 +8799,8 @@ CREATE TABLE IF NOT EXISTS `bidang_unit_kerja_ruangan` (
 
 -- Dumping data for table simbakda.bidang_unit_kerja_ruangan: ~0 rows (approximately)
 /*!40000 ALTER TABLE `bidang_unit_kerja_ruangan` DISABLE KEYS */;
-INSERT INTO `bidang_unit_kerja_ruangan` (`id`, `code`, `name`, `parent`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(8607, '50.10.30.01', 'RUANG WIDI', '50.01.30', 12, '2016-06-27 14:45:30', 12, '2016-06-27 14:45:44');
+INSERT INTO `bidang_unit_kerja_ruangan` (`id`, `code`, `name`, `bidang_unit_kerja`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
+	(8607, '50.10.30.01', 'RUANG WIDI', '50.01.30', 12, '2016-06-27 14:45:30', 12, '2016-09-16 05:06:00');
 /*!40000 ALTER TABLE `bidang_unit_kerja_ruangan` ENABLE KEYS */;
 
 
@@ -8840,7 +8840,7 @@ CREATE TABLE IF NOT EXISTS `cara_perolehan` (
   KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.cara_perolehan: ~7 rows (approximately)
+-- Dumping data for table simbakda.cara_perolehan: ~6 rows (approximately)
 /*!40000 ALTER TABLE `cara_perolehan` DISABLE KEYS */;
 INSERT INTO `cara_perolehan` (`id`, `code`, `name`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(6, '1', 'PEMBELIAN', 12, '2016-08-03 20:17:59', 0, '0000-00-00 00:00:00'),
@@ -8866,7 +8866,7 @@ CREATE TABLE IF NOT EXISTS `dasar_perolehan` (
   KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.dasar_perolehan: ~3 rows (approximately)
+-- Dumping data for table simbakda.dasar_perolehan: ~2 rows (approximately)
 /*!40000 ALTER TABLE `dasar_perolehan` DISABLE KEYS */;
 INSERT INTO `dasar_perolehan` (`id`, `code`, `name`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(6, '1', 'SKO', 12, '2016-08-03 20:10:37', 0, '0000-00-00 00:00:00'),
@@ -8902,10 +8902,10 @@ CREATE TABLE IF NOT EXISTS `formulir_isian_pengadaan_barang` (
   KEY `code` (`nomor`,`tahun_anggaran`,`bidang_unit`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.formulir_isian_pengadaan_barang: ~1 rows (approximately)
+-- Dumping data for table simbakda.formulir_isian_pengadaan_barang: ~0 rows (approximately)
 /*!40000 ALTER TABLE `formulir_isian_pengadaan_barang` DISABLE KEYS */;
 INSERT INTO `formulir_isian_pengadaan_barang` (`id`, `nomor`, `tanggal`, `nilai_kontrak`, `nilai_apbd`, `perusahaan_rekanan`, `jenis_dana`, `tahun_anggaran`, `bukti_pembayaran`, `pemilik`, `kabupaten`, `bidang_unit`, `cara_perolehan`, `dasar_perolehan`, `nomor_perolehan`, `tanggal_perolehan`, `tahun_perolehan`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(7, '001', '2016-08-03', 1000000, 10000000, '001', '1', '16', '1', '11', '0101', '50.01', '1', '1', '123', '2016-08-02', 2016, 12, '2016-08-03 20:48:03', 0, '0000-00-00 00:00:00');
+	(7, '001', '2016-08-03', 1000000, 10000000, '001', '1', '16', '1', '11', '0101', '50.01', '1', '1', '123', '0000-00-00', 2016, 12, '2016-08-03 20:48:03', 12, '2016-08-05 14:51:17');
 /*!40000 ALTER TABLE `formulir_isian_pengadaan_barang` ENABLE KEYS */;
 
 
@@ -8917,19 +8917,22 @@ CREATE TABLE IF NOT EXISTS `formulir_isian_pengadaan_barang_detail` (
   `merk` varchar(100) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` bigint(20) NOT NULL,
-  `rekening` varchar(50) NOT NULL,
+  `invent` varchar(15) NOT NULL,
+  `no_sp2d` varchar(100) NOT NULL,
+  `tgl_sp2d` date NOT NULL,
+  `ppn` bigint(20) NOT NULL,
   `keterangan` varchar(100) NOT NULL,
   `user_create` int(11) NOT NULL,
   `date_create` datetime NOT NULL,
   `user_update` int(11) NOT NULL,
   `date_update` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table simbakda.formulir_isian_pengadaan_barang_detail: ~1 rows (approximately)
 /*!40000 ALTER TABLE `formulir_isian_pengadaan_barang_detail` DISABLE KEYS */;
-INSERT INTO `formulir_isian_pengadaan_barang_detail` (`id`, `id_parent`, `kode_barang`, `merk`, `jumlah`, `harga`, `rekening`, `keterangan`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(43, 7, '0202030701', 'toyota', 10, 340000000, '123333', '-', 12, '2016-08-03 20:48:03', 0, '0000-00-00 00:00:00');
+INSERT INTO `formulir_isian_pengadaan_barang_detail` (`id`, `id_parent`, `kode_barang`, `merk`, `jumlah`, `harga`, `invent`, `no_sp2d`, `tgl_sp2d`, `ppn`, `keterangan`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
+	(50, 7, '0202030701', 'toyota', 10, 340000000, 'ya', '123', '2016-08-05', 123, '-', 12, '2016-08-05 14:51:17', 0, '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `formulir_isian_pengadaan_barang_detail` ENABLE KEYS */;
 
 
@@ -8946,7 +8949,7 @@ CREATE TABLE IF NOT EXISTS `jenis_dana` (
   KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.jenis_dana: ~7 rows (approximately)
+-- Dumping data for table simbakda.jenis_dana: ~6 rows (approximately)
 /*!40000 ALTER TABLE `jenis_dana` DISABLE KEYS */;
 INSERT INTO `jenis_dana` (`id`, `code`, `name`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(6, '1', 'APBN', 12, '2016-08-03 20:07:49', 0, '0000-00-00 00:00:00'),
@@ -8964,20 +8967,22 @@ CREATE TABLE IF NOT EXISTS `kabupaten` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(15) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `parent` varchar(15) NOT NULL,
+  `provinsi` varchar(15) NOT NULL,
   `user_create` int(11) NOT NULL,
   `date_create` datetime NOT NULL,
   `user_update` int(11) NOT NULL,
   `date_update` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=8607 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8610 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.kabupaten: ~2 rows (approximately)
+-- Dumping data for table simbakda.kabupaten: ~4 rows (approximately)
 /*!40000 ALTER TABLE `kabupaten` DISABLE KEYS */;
-INSERT INTO `kabupaten` (`id`, `code`, `name`, `parent`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(8605, '0101', 'CIANJUR', '01', 12, '2016-06-27 13:51:11', 12, '2016-06-27 14:01:42'),
-	(8606, '0102', 'BANDUNG', '01', 12, '2016-06-27 13:58:24', 12, '2016-06-27 13:58:49');
+INSERT INTO `kabupaten` (`id`, `code`, `name`, `provinsi`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
+	(8605, '0101', 'CIANJUR', '01', 12, '2016-06-27 13:51:11', 12, '2016-08-17 14:21:51'),
+	(8606, '0102', 'BANDUNG', '01', 12, '2016-06-27 13:58:24', 12, '2016-06-27 13:58:49'),
+	(8608, '0201', 'SURABAYA', '02', 12, '2016-08-17 13:30:51', 0, '0000-00-00 00:00:00'),
+	(8609, '0103', 'TASIK', '01', 12, '2016-08-22 08:41:17', 12, '2016-08-22 08:41:29');
 /*!40000 ALTER TABLE `kabupaten` ENABLE KEYS */;
 
 
@@ -9064,7 +9069,7 @@ CREATE TABLE IF NOT EXISTS `perusahaan_rekanan` (
 -- Dumping data for table simbakda.perusahaan_rekanan: ~1 rows (approximately)
 /*!40000 ALTER TABLE `perusahaan_rekanan` DISABLE KEYS */;
 INSERT INTO `perusahaan_rekanan` (`id`, `code`, `name`, `perusahaan_bentuk`, `alamat`, `pimpinan`, `bank`, `rekening`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(6, '001', 'DAMZ SOFT INC', '01', 'CILAKU CIANJUR', 'ADAM PRASETIA', '01', '1232231232', 12, '2016-06-27 15:15:30', 12, '2016-08-03 19:22:06');
+	(6, '001', 'DAMZ SOFT INC', '01', 'CILAKU CIANJUR', 'ADAM PRASETIA', '01', '1232231232', 12, '2016-06-27 15:15:30', 12, '2016-09-16 05:19:28');
 /*!40000 ALTER TABLE `perusahaan_rekanan` ENABLE KEYS */;
 
 
@@ -9103,12 +9108,13 @@ CREATE TABLE IF NOT EXISTS `rencana_pemeliharaan_barang` (
   `date_update` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `code` (`nomor`,`tahun_anggaran`,`bidang_unit`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.rencana_pemeliharaan_barang: ~0 rows (approximately)
+-- Dumping data for table simbakda.rencana_pemeliharaan_barang: ~1 rows (approximately)
 /*!40000 ALTER TABLE `rencana_pemeliharaan_barang` DISABLE KEYS */;
 INSERT INTO `rencana_pemeliharaan_barang` (`id`, `nomor`, `tanggal`, `tahun_anggaran`, `bidang_unit`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(7, '001', '2016-07-18', '16', '50.01', 12, '2016-07-18 09:35:37', 0, '0000-00-00 00:00:00');
+	(7, '001', '2016-07-18', '16', '50.01', 12, '2016-07-18 09:35:37', 0, '0000-00-00 00:00:00'),
+	(8, '123', '2016-09-16', '16', '50.01', 12, '2016-09-16 05:21:32', 12, '2016-09-16 05:22:47');
 /*!40000 ALTER TABLE `rencana_pemeliharaan_barang` ENABLE KEYS */;
 
 
@@ -9116,7 +9122,7 @@ INSERT INTO `rencana_pemeliharaan_barang` (`id`, `nomor`, `tanggal`, `tahun_angg
 CREATE TABLE IF NOT EXISTS `rencana_pemeliharaan_barang_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_parent` int(11) NOT NULL,
-  `kode_barang` varchar(15) NOT NULL,
+  `barang` varchar(15) NOT NULL,
   `merk` varchar(100) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` bigint(20) NOT NULL,
@@ -9127,13 +9133,14 @@ CREATE TABLE IF NOT EXISTS `rencana_pemeliharaan_barang_detail` (
   `user_update` int(11) NOT NULL,
   `date_update` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.rencana_pemeliharaan_barang_detail: ~2 rows (approximately)
+-- Dumping data for table simbakda.rencana_pemeliharaan_barang_detail: ~3 rows (approximately)
 /*!40000 ALTER TABLE `rencana_pemeliharaan_barang_detail` DISABLE KEYS */;
-INSERT INTO `rencana_pemeliharaan_barang_detail` (`id`, `id_parent`, `kode_barang`, `merk`, `jumlah`, `harga`, `rekening`, `keterangan`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
+INSERT INTO `rencana_pemeliharaan_barang_detail` (`id`, `id_parent`, `barang`, `merk`, `jumlah`, `harga`, `rekening`, `keterangan`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(44, 7, '0203010401', 'Toyota', 5, 135000000, '123', 'untuk berobat warga', 12, '2016-07-18 09:35:37', 0, '0000-00-00 00:00:00'),
-	(45, 7, '0203010403', 'Honda', 7, 230000000, '123', '-', 12, '2016-07-18 09:35:37', 0, '0000-00-00 00:00:00');
+	(45, 7, '0203010403', 'Honda', 7, 230000000, '123', '-', 12, '2016-07-18 09:35:37', 0, '0000-00-00 00:00:00'),
+	(46, 8, '0203010401', 'DAIHATSU', 45, 340000000, '123123123', 'UNTUK MAYAT', 12, '2016-09-16 05:22:47', 0, '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `rencana_pemeliharaan_barang_detail` ENABLE KEYS */;
 
 
@@ -9150,15 +9157,20 @@ CREATE TABLE IF NOT EXISTS `rencana_pengadaan_barang` (
   `date_update` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `code` (`nomor`,`tahun_anggaran`,`bidang_unit`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.rencana_pengadaan_barang: ~4 rows (approximately)
+-- Dumping data for table simbakda.rencana_pengadaan_barang: ~9 rows (approximately)
 /*!40000 ALTER TABLE `rencana_pengadaan_barang` DISABLE KEYS */;
 INSERT INTO `rencana_pengadaan_barang` (`id`, `nomor`, `tanggal`, `tahun_anggaran`, `bidang_unit`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(3, '001', '2016-06-30', '16', '50.01', 12, '2016-06-29 13:53:03', 12, '2016-06-29 16:56:03'),
-	(4, '002', '2016-06-29', '16', '50.01', 12, '2016-06-29 14:10:07', 12, '2016-06-29 16:56:12'),
+	(4, '002', '2016-06-29', '16', '50.01', 12, '2016-06-29 14:10:07', 12, '2016-08-31 21:37:45'),
 	(5, '003', '2016-06-29', '16', '50.01', 12, '2016-06-29 14:45:56', 12, '2016-06-29 16:56:34'),
-	(6, '004', '2016-06-29', '15', '50.01', 12, '2016-06-29 14:57:31', 12, '2016-06-29 16:56:19');
+	(6, '004', '2016-06-29', '15', '50.01', 12, '2016-06-29 14:57:31', 12, '2016-08-31 21:37:31'),
+	(7, '005', '2016-08-23', '16', '50.01', 12, '2016-08-23 17:10:59', 12, '2016-08-23 17:27:42'),
+	(8, '006', '2016-08-23', '16', '50.01', 12, '2016-08-23 17:30:12', 12, '2016-08-31 21:39:11'),
+	(9, '007', '2016-08-24', '16', '50.01', 12, '2016-08-24 09:19:59', 12, '2016-08-31 21:34:25'),
+	(10, '008', '2016-08-24', '16', '50.01', 12, '2016-08-24 13:38:06', 12, '2016-08-31 21:37:09'),
+	(11, '009', '2016-08-24', '16', '50.01', 12, '2016-08-24 13:49:20', 12, '2016-08-31 21:38:39');
 /*!40000 ALTER TABLE `rencana_pengadaan_barang` ENABLE KEYS */;
 
 
@@ -9166,7 +9178,7 @@ INSERT INTO `rencana_pengadaan_barang` (`id`, `nomor`, `tanggal`, `tahun_anggara
 CREATE TABLE IF NOT EXISTS `rencana_pengadaan_barang_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_parent` int(11) NOT NULL,
-  `kode_barang` varchar(15) NOT NULL,
+  `barang` varchar(15) NOT NULL,
   `merk` varchar(100) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` bigint(20) NOT NULL,
@@ -9177,18 +9189,26 @@ CREATE TABLE IF NOT EXISTS `rencana_pengadaan_barang_detail` (
   `user_update` int(11) NOT NULL,
   `date_update` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.rencana_pengadaan_barang_detail: ~7 rows (approximately)
+-- Dumping data for table simbakda.rencana_pengadaan_barang_detail: ~15 rows (approximately)
 /*!40000 ALTER TABLE `rencana_pengadaan_barang_detail` DISABLE KEYS */;
-INSERT INTO `rencana_pengadaan_barang_detail` (`id`, `id_parent`, `kode_barang`, `merk`, `jumlah`, `harga`, `rekening`, `keterangan`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
+INSERT INTO `rencana_pengadaan_barang_detail` (`id`, `id_parent`, `barang`, `merk`, `jumlah`, `harga`, `rekening`, `keterangan`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(36, 3, '03', 'Beton', 11, 123000, '', '', 12, '2016-06-29 16:56:03', 0, '0000-00-00 00:00:00'),
-	(37, 4, '06', 'ffff', 1, 1300000, '', '', 12, '2016-06-29 16:56:13', 0, '0000-00-00 00:00:00'),
-	(38, 6, '020301', 'Suzuki', 5, 30000000, '111111', 'note', 12, '2016-06-29 16:56:19', 0, '0000-00-00 00:00:00'),
-	(39, 6, '0518020102', 'asal', 1, 140000000, '12123123', '', 12, '2016-06-29 16:56:19', 0, '0000-00-00 00:00:00'),
 	(40, 5, '01', 'yamaha', 17, 150000, '11111111', 'ket', 12, '2016-06-29 16:56:34', 0, '0000-00-00 00:00:00'),
 	(41, 5, '0101', 'honda', 10, 2300, '2222222', 'note', 12, '2016-06-29 16:56:34', 0, '0000-00-00 00:00:00'),
-	(42, 5, '02060407', 'Yokohama', 12, 1400000, '', '', 12, '2016-06-29 16:56:34', 0, '0000-00-00 00:00:00');
+	(42, 5, '02060407', 'Yokohama', 12, 1400000, '', '', 12, '2016-06-29 16:56:34', 0, '0000-00-00 00:00:00'),
+	(49, 7, '03', 'YAMAHA', 5, 17000, '123', 'KETERANGAN', 12, '2016-08-23 17:27:42', 0, '0000-00-00 00:00:00'),
+	(50, 7, '04', 'HONDA', 4, 13000, '123232321', 'KET', 12, '2016-08-23 17:27:42', 0, '0000-00-00 00:00:00'),
+	(56, 9, '0101130108', 'YAMAHA', 3, 1200000, '12323', 'ORA ISO TOH', 12, '2016-08-31 21:34:25', 0, '0000-00-00 00:00:00'),
+	(57, 10, '02030101', 'YAMAHA', 14, 13500000, '12345', 'KETERANGAN', 12, '2016-08-31 21:37:09', 0, '0000-00-00 00:00:00'),
+	(58, 10, '02', 'ASDASD', 4, 130000, '123123', 'KET', 12, '2016-08-31 21:37:09', 0, '0000-00-00 00:00:00'),
+	(59, 6, '0518020102', 'ASAL', 1, 140000000, '12123123', '', 12, '2016-08-31 21:37:31', 0, '0000-00-00 00:00:00'),
+	(60, 6, '020301', 'SUZUKI', 5, 30000000, '111111', 'NOTE', 12, '2016-08-31 21:37:31', 0, '0000-00-00 00:00:00'),
+	(61, 4, '06', 'FFFF', 1, 1300000, '', '', 12, '2016-08-31 21:37:46', 0, '0000-00-00 00:00:00'),
+	(63, 11, '0209020409', '-', 7, 1300000, '123', 'KET', 12, '2016-08-31 21:38:39', 0, '0000-00-00 00:00:00'),
+	(64, 11, '0518020102', '-', 4, 1770000, '123', 'KET AJAH', 12, '2016-08-31 21:38:39', 0, '0000-00-00 00:00:00'),
+	(66, 8, '06', 'KAWASAKI', 1, 13111, '334343434', 'KETERANGAN', 12, '2016-08-31 21:39:11', 0, '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `rencana_pengadaan_barang_detail` ENABLE KEYS */;
 
 
@@ -9256,7 +9276,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table simbakda.users: ~4 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `code`, `name`, `username`, `password`, `level`, `ip_login`, `date_login`, `user_agent`, `status`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(12, '001', 'Adam Prasetia', 'damz', '202cb962ac59075b964b07152d234b70', '1', '::1', '2016-08-03 18:32:29', 'Windows 7(Google Chrome 51.0.2704.103)', '1', 0, '0000-00-00 00:00:00', 12, '2016-06-24 11:01:44'),
+	(12, '001', 'Adam Prasetia', 'damz', '202cb962ac59075b964b07152d234b70', '1', '::1', '2016-09-16 04:51:29', 'Windows 7(Google Chrome 52.0.2743.116)', '1', 0, '0000-00-00 00:00:00', 12, '2016-06-24 11:01:44'),
 	(13, '002', 'Reza Ardiansyah', 'ezot', '202cb962ac59075b964b07152d234b70', '1', '', '0000-00-00 00:00:00', '', '1', 12, '2016-06-21 04:20:45', 12, '2016-06-22 06:33:15'),
 	(15, '003', 'Udin Penyok', 'udin', '202cb962ac59075b964b07152d234b70', '2', '', '0000-00-00 00:00:00', '', '2', 12, '2016-06-22 06:21:19', 12, '2016-06-24 11:06:17'),
 	(16, '004', 'Christiano Ronaldo', 'ronaldo', '202cb962ac59075b964b07152d234b70', '1', '::1', '2016-08-02 20:22:13', 'Windows 7(Google Chrome 51.0.2704.103)', '1', 12, '2016-08-02 20:22:06', 12, '2016-08-02 20:22:35');

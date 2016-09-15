@@ -1,6 +1,6 @@
 <?php foreach ($field as $f): ?>
 	<?php if ($f['filter']): ?>
-		<?php if ($f['type']=='string'): ?>
+		<?php if ($f['type']=='string' || $f['type']=='memo'): ?>
 			<div class="form-group">
 				<?php echo form_input(array('name'=>$f['id'],'value'=>$this->input->get($f['id']),'autocomplete'=>'off','placeholder'=>$f['name'].'..','onchange=>"submit()"','class'=>'form-control input-sm'))?>
 			</div>			
