@@ -9110,7 +9110,7 @@ CREATE TABLE IF NOT EXISTS `rencana_pemeliharaan_barang` (
   KEY `code` (`nomor`,`tahun_anggaran`,`bidang_unit`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.rencana_pemeliharaan_barang: ~1 rows (approximately)
+-- Dumping data for table simbakda.rencana_pemeliharaan_barang: ~0 rows (approximately)
 /*!40000 ALTER TABLE `rencana_pemeliharaan_barang` DISABLE KEYS */;
 INSERT INTO `rencana_pemeliharaan_barang` (`id`, `nomor`, `tanggal`, `tahun_anggaran`, `bidang_unit`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(7, '001', '2016-07-18', '16', '50.01', 12, '2016-07-18 09:35:37', 0, '0000-00-00 00:00:00'),
@@ -9135,7 +9135,7 @@ CREATE TABLE IF NOT EXISTS `rencana_pemeliharaan_barang_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table simbakda.rencana_pemeliharaan_barang_detail: ~3 rows (approximately)
+-- Dumping data for table simbakda.rencana_pemeliharaan_barang_detail: ~2 rows (approximately)
 /*!40000 ALTER TABLE `rencana_pemeliharaan_barang_detail` DISABLE KEYS */;
 INSERT INTO `rencana_pemeliharaan_barang_detail` (`id`, `id_parent`, `barang`, `merk`, `jumlah`, `harga`, `rekening`, `keterangan`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
 	(44, 7, '0203010401', 'Toyota', 5, 135000000, '123', 'untuk berobat warga', 12, '2016-07-18 09:35:37', 0, '0000-00-00 00:00:00'),
@@ -9276,7 +9276,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table simbakda.users: ~4 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `code`, `name`, `username`, `password`, `level`, `ip_login`, `date_login`, `user_agent`, `status`, `user_create`, `date_create`, `user_update`, `date_update`) VALUES
-	(12, '001', 'Adam Prasetia', 'damz', '202cb962ac59075b964b07152d234b70', '1', '::1', '2016-09-16 04:51:29', 'Windows 7(Google Chrome 52.0.2743.116)', '1', 0, '0000-00-00 00:00:00', 12, '2016-06-24 11:01:44'),
+	(12, '001', 'Adam Prasetia', 'damz', '202cb962ac59075b964b07152d234b70', '1', '::1', '2016-10-10 10:19:33', 'Windows 7(Google Chrome 53.0.2785.143)', '1', 0, '0000-00-00 00:00:00', 12, '2016-06-24 11:01:44'),
 	(13, '002', 'Reza Ardiansyah', 'ezot', '202cb962ac59075b964b07152d234b70', '1', '', '0000-00-00 00:00:00', '', '1', 12, '2016-06-21 04:20:45', 12, '2016-06-22 06:33:15'),
 	(15, '003', 'Udin Penyok', 'udin', '202cb962ac59075b964b07152d234b70', '2', '', '0000-00-00 00:00:00', '', '2', 12, '2016-06-22 06:21:19', 12, '2016-06-24 11:06:17'),
 	(16, '004', 'Christiano Ronaldo', 'ronaldo', '202cb962ac59075b964b07152d234b70', '1', '::1', '2016-08-02 20:22:13', 'Windows 7(Google Chrome 51.0.2704.103)', '1', 12, '2016-08-02 20:22:06', 12, '2016-08-02 20:22:35');
