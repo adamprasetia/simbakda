@@ -100,6 +100,8 @@
             <li class="<?php echo active_menu('rencana_pengadaan_barang')?>"><?php echo anchor('rencana_pengadaan_barang','<i class="fa fa-circle-o"></i> Rencana Pengadaan Barang')?></li>
             <li class="<?php echo active_menu('rencana_pemeliharaan_barang')?>"><?php echo anchor('rencana_pemeliharaan_barang','<i class="fa fa-circle-o"></i> Rencana Pemeliharaan Barang')?></li>
             <li class="<?php echo active_menu('formulir_isian_pengadaan_barang')?>"><?php echo anchor('formulir_isian_pengadaan_barang','<i class="fa fa-circle-o"></i> Formulir Isisan Pengadaan Barang')?></li>
+            <li class="<?php echo active_menu('formulir_status_barang')?>"><?php echo anchor('formulir_status_barang','<i class="fa fa-circle-o"></i> Formulir Status Barang')?></li>
+            <li class="<?php echo active_menu('penerimaan_barang')?>"><?php echo anchor('penerimaan_barang','<i class="fa fa-circle-o"></i> Penerimaan Barang')?></li>
           </ul>
         </li> 
         <li class="treeview">
