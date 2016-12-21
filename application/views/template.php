@@ -102,6 +102,7 @@
             <li class="<?php echo active_menu('formulir_isian_pengadaan_barang')?>"><?php echo anchor('formulir_isian_pengadaan_barang','<i class="fa fa-circle-o"></i> Formulir Isisan Pengadaan Barang')?></li>
             <li class="<?php echo active_menu('formulir_status_barang')?>"><?php echo anchor('formulir_status_barang','<i class="fa fa-circle-o"></i> Formulir Status Barang')?></li>
             <li class="<?php echo active_menu('penerimaan_barang')?>"><?php echo anchor('penerimaan_barang','<i class="fa fa-circle-o"></i> Penerimaan Barang')?></li>
+            <li class="<?php echo active_menu('pengeluaran_barang')?>"><?php echo anchor('pengeluaran_barang','<i class="fa fa-circle-o"></i> Pengeluaran Barang')?></li>
           </ul>
         </li> 
         <li class="treeview">
