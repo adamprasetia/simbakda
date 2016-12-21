@@ -11,7 +11,7 @@ class Model extends CI_Model
 		$data[] = $this->db->from($this->tbl_name.' a');
 		$data[] = $this->db->join($this->tbl_name.'_detail b','a.id=b.id_parent','left');
 		$data[] = $this->db->join('tahun_anggaran c','a.tahun_anggaran=c.code','left');
-		$data[] = $this->db->join('bidang_unit d','a.bidang_unit=d.code','left');
+		$data[] = $this->db->join('bidang d','a.bidang_unit=d.code','left');
 		$data[] = $this->search();
 		$date_from = $this->input->get('date_from');
 		$date_to = $this->input->get('date_to');

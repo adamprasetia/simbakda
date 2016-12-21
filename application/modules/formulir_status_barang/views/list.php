@@ -27,7 +27,7 @@
 					<?php echo form_dropdown('tahun_anggaran',$this->general_model->dropdown('tahun_anggaran','Tahun Anggaran'),$this->input->get('tahun_anggaran'),'class="form-control input-sm select2" onchange="submit()"')?>
 				</div>				
 				<div class="form-group">
-					<?php echo form_dropdown('bidang_unit',$this->general_model->dropdown('bidang_unit','Unit SKPD'),$this->input->get('bidang_unit'),'class="form-control input-sm select2" onchange="submit()"')?>
+					<?php echo form_dropdown('bidang_unit',$this->general_model->dropdown('bidang','Unit SKPD',array('type'=>'02')),$this->input->get('bidang_unit'),'class="form-control input-sm select2" onchange="submit()"')?>
 				</div>				
 				<div class="form-group">
 					Tanggal : 

@@ -2,7 +2,7 @@
 
 class Model extends CI_Model 
 {
-	private $tbl_name = 'penerimaan_barang';
+	private $tbl_name = 'rencana_pemeliharaan_barang';
 	private $tbl_key 	= 'id';
 
 	public function query()
@@ -16,8 +16,8 @@ class Model extends CI_Model
 		$date_from = $this->input->get('date_from');
 		$date_to = $this->input->get('date_to');
 		if($date_from <> '' && $date_to <> ''){
-			$data[] = $this->db->where('a.tanggal_terima >=',format_ymd($date_from));
-			$data[] = $this->db->where('a.tanggal_terima <=',format_ymd($date_to));
+			$data[] = $this->db->where('a.tanggal >=',format_ymd($date_from));
+			$data[] = $this->db->where('a.tanggal <=',format_ymd($date_to));
 		}		
 		$tahun_anggaran = $this->input->get('tahun_anggaran');
 		if($tahun_anggaran <> ''){
@@ -28,7 +28,7 @@ class Model extends CI_Model
 			$data[] = $this->db->where('a.bidang_unit',$bidang_unit);
 		}		
 		$data[] = $this->db->group_by('a.id');
-		$data[] = $this->db->order_by($this->general->get_order_column('a.tanggal_terima'),$this->general->get_order_type('desc'));
+		$data[] = $this->db->order_by($this->general->get_order_column('a.tanggal'),$this->general->get_order_type('desc'));
 		$data[] = $this->db->offset($this->general->get_offset());
 		return $data;
 	}

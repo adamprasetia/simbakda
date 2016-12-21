@@ -67,7 +67,7 @@
 					</div>								
 					<div class="form-group form-inline">
 						<?php echo form_label('SKPD','bidang_unit',array('class'=>'control-label'))?>
-						<?php echo form_dropdown('bidang_unit',$this->general_model->dropdown('bidang_unit','Jenis Dana'),set_value('skpd',(isset($row->bidang_unit)?$row->bidang_unit:'')),'class="form-control input-sm select2"')?>
+						<?php echo form_dropdown('bidang_unit',$this->general_model->dropdown('bidang','SKPD',array('type'=>'02')),set_value('skpd',(isset($row->bidang_unit)?$row->bidang_unit:'')),'class="form-control input-sm select2"')?>
 						<small><?php echo form_error('bidang_unit')?></small>
 					</div>								
 					<div class="form-group form-inline">

@@ -23,18 +23,16 @@
 				<div class="form-group">
 					<?php echo form_input(array('name'=>'search','value'=>$this->input->get('search'),'autocomplete'=>'off','placeholder'=>$this->lang->line('search').'..','onchange=>"submit()"','class'=>'form-control input-sm'))?>
 				</div>
-				<div class="form-group">
-					<?php echo form_dropdown('tahun_anggaran',$this->general_model->dropdown('tahun_anggaran','Tahun Anggaran'),$this->input->get('tahun_anggaran'),'class="form-control input-sm select2" onchange="submit()"')?>
-				</div>				
-				<div class="form-group">
-					<?php echo form_dropdown('bidang_unit',$this->general_model->dropdown('bidang','Unit SKPD',array('type'=>'02')),$this->input->get('bidang_unit'),'class="form-control input-sm select2" onchange="submit()"')?>
-				</div>				
-				<div class="form-group">
-					Tanggal : 
-					<?php echo form_input(array('name'=>'date_from','placeholder'=>$this->lang->line('from'),'class'=>'form-control input-sm input-tanggal','size'=>'10','value'=>$this->input->get('date_from')))?>
-					<?php echo form_input(array('name'=>'date_to','placeholder'=>$this->lang->line('to'),'class'=>'form-control input-sm input-tanggal','size'=>'10','value'=>$this->input->get('date_to')))?>
-				</div>	
-				<button class="btn btn-primary btn-sm" type="submit"><span class="glyphicon glyphicon-filter"></span> Filter</button>			
+				<?php if (isset($index_parent) && isset($tbl_name) && $index_parent==$tbl_name): ?>					
+					<div class="form-group">
+						<?php echo form_dropdown($index_parent,$this->general_model->dropdown($index_parent,$title_parent,array('type'=>$code_parent)),$this->input->get($index_parent),'class="form-control input-sm select2" onchange="submit()"')?>
+					</div>
+				<?php endif ?>
+				<?php if (isset($index_parent) && isset($tbl_name) && $index_parent!=$tbl_name): ?>
+					<div class="form-group">
+						<?php echo form_dropdown($index_parent,$this->general_model->dropdown($index_parent,$title_parent),$this->input->get($index_parent),'class="form-control input-sm select2" onchange="submit()"')?>
+					</div>
+				<?php endif ?>
 			<?php echo form_close()?>
 			<?php echo form_open($action_delete,array('class'=>'form-check-delete'))?>
 			<div class="table-responsive">

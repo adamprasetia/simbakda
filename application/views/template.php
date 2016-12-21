@@ -77,18 +77,25 @@
                 <i class="fa fa-database"></i> <span>Master Barang Daerah</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="<?php echo active_menu('barang_golongan')?>"><?php echo anchor('barang_golongan','<i class="fa fa-circle-o"></i> Golongan Barang')?></li>
-                <li class="<?php echo active_menu('barang_bidang')?>"><?php echo anchor('barang_bidang','<i class="fa fa-circle-o"></i> Bidang Barang')?></li>
-                <li class="<?php echo active_menu('barang_kelompok')?>"><?php echo anchor('barang_kelompok','<i class="fa fa-circle-o"></i> Kelompok Barang')?></li>
-                <li class="<?php echo active_menu('barang_sub_kelompok')?>"><?php echo anchor('barang_sub_kelompok','<i class="fa fa-circle-o"></i> Sub Kelompok Barang')?></li>
-                <li class="<?php echo active_menu('barang_sub_sub_kelompok')?>"><?php echo anchor('barang_sub_sub_kelompok','<i class="fa fa-circle-o"></i> Sub-Sub Kelompok Barang')?></li>
+                <li class="<?php echo active_menu('barang','barang_golongan')?>"><?php echo anchor('barang/barang_golongan','<i class="fa fa-circle-o"></i> Golongan Barang')?></li>
+                <li class="<?php echo active_menu('barang','barang_bidang')?>"><?php echo anchor('barang/barang_bidang','<i class="fa fa-circle-o"></i> Bidang Barang')?></li>
+                <li class="<?php echo active_menu('barang','barang_kelompok')?>"><?php echo anchor('barang/barang_kelompok','<i class="fa fa-circle-o"></i> Kelompok Barang')?></li>
+                <li class="<?php echo active_menu('barang','barang_sub_kelompok')?>"><?php echo anchor('barang/barang_sub_kelompok','<i class="fa fa-circle-o"></i> Sub Kelompok Barang')?></li>
+                <li class="<?php echo active_menu('barang','barang_sub_sub_kelompok')?>"><?php echo anchor('barang/barang_sub_sub_kelompok','<i class="fa fa-circle-o"></i> Sub-Sub Kelompok Barang')?></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-database"></i> <span>Master Bidang</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="<?php echo active_menu('bidang','')?>"><?php echo anchor('bidang','<i class="fa fa-circle-o"></i> Bidang')?></li>
+                <li class="<?php echo active_menu('bidang','bidang_unit')?>"><?php echo anchor('bidang/bidang_unit','<i class="fa fa-circle-o"></i> Unit Bidang')?></li>
+                <li class="<?php echo active_menu('bidang','bidang_kerja')?>"><?php echo anchor('bidang/bidang_kerja','<i class="fa fa-circle-o"></i> Unit Kerja')?></li>
+                <li class="<?php echo active_menu('bidang','bidang_lokasi')?>"><?php echo anchor('bidang/bidang_lokasi','<i class="fa fa-circle-o"></i> Lokasi')?></li>
               </ul>
             </li>
             <li class="<?php echo active_menu('kabupaten')?>"><?php echo anchor('kabupaten','<i class="fa fa-circle-o"></i> Master Kabupaten')?></li>
-            <li class="<?php echo active_menu('bidang_unit')?>"><?php echo anchor('bidang_unit','<i class="fa fa-circle-o"></i> Master Unit Bidang')?></li>
-            <li class="<?php echo active_menu('bidang_unit_kerja')?>"><?php echo anchor('bidang_unit_kerja','<i class="fa fa-circle-o"></i> Master Unit Kerja')?></li>
-            <li class="<?php echo active_menu('bidang_unit_kerja_lokasi')?>"><?php echo anchor('bidang_unit_kerja_lokasi','<i class="fa fa-circle-o"></i> Master Lokasi')?></li>
-            <li class="<?php echo active_menu('bidang_unit_kerja_ruangan')?>"><?php echo anchor('bidang_unit_kerja_ruangan','<i class="fa fa-circle-o"></i> Master Ruangan')?></li>
             <li class="<?php echo active_menu('perusahaan_rekanan')?>"><?php echo anchor('perusahaan_rekanan','<i class="fa fa-circle-o"></i> Perusahaan Rekanan')?></li>
           </ul>
         </li> 
@@ -111,9 +118,9 @@
           </a>
           <ul class="treeview-menu">
             <li class="<?php echo active_menu('reference','barang_jenis')?>"><?php echo anchor('reference/barang_jenis','<i class="fa fa-circle-o"></i> Jenis Barang')?></li>
+            <li class="<?php echo active_menu('reference','bidang_tipe')?>"><?php echo anchor('reference/bidang_tipe','<i class="fa fa-circle-o"></i> Jenis Bidang')?></li>
             <li class="<?php echo active_menu('reference','provinsi')?>"><?php echo anchor('reference/provinsi','<i class="fa fa-circle-o"></i> Provinsi')?></li>
             <li class="<?php echo active_menu('reference','pemilik')?>"><?php echo anchor('reference/pemilik','<i class="fa fa-circle-o"></i> Pemilik')?></li>
-            <li class="<?php echo active_menu('reference','bidang')?>"><?php echo anchor('reference/bidang','<i class="fa fa-circle-o"></i> Bidang')?></li>
             <li class="<?php echo active_menu('reference','satuan')?>"><?php echo anchor('reference/satuan','<i class="fa fa-circle-o"></i> Satuan')?></li>
             <li class="<?php echo active_menu('reference','warna')?>"><?php echo anchor('reference/warna','<i class="fa fa-circle-o"></i> Warna')?></li>
             <li class="<?php echo active_menu('reference','pangkat')?>"><?php echo anchor('reference/pangkat','<i class="fa fa-circle-o"></i> Pangkat')?></li>

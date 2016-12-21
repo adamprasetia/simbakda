@@ -1,21 +1,27 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Rencana_pengadaan_barang extends MY_Controller 
+class Barang_golongan extends MY_Controller 
 {
 	private $data = array();
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->data['title'] = "Rencana Pengadaan Barang";
-		$this->data['index'] = "rencana_pengadaan_barang";
-		$this->load->model($this->data['index'].'/model');
+		$this->data['index'] = 'barang/barang_golongan';
+		$this->data['title'] = 'Golongan Barang';
+		$this->data['index_parent'] = 'barang_jenis';
+		$this->data['title_parent'] = 'Jenis Barang';
+		$this->data['tbl_name'] = 'barang';
+		$this->data['code'] = '01';
+		// $this->data['code_parent'] = '01';
+		$this->load->model('inherit_model');
+		$this->load->model('general_model','model');
 	}
 	public function index()
 	{
 		$offset = $this->general->get_offset();
 		$limit 	= $this->general->get_limit();
-		$total 	= $this->model->count_all();
+		$total 	= $this->inherit_model->count_all($this->data['tbl_name'],$this->data['index_parent'],$this->data['code']);
 
 		$this->data['action'] = $this->data['index'].'/search'.get_query_string(null,'offset');
 		$this->data['action_delete'] = $this->data['index'].'/delete'.get_query_string();
@@ -24,14 +30,10 @@ class Rencana_pengadaan_barang extends MY_Controller
 		$this->data['delete_btn'] = '<button id="delete-btn" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> '.$this->lang->line('delete_by_checked').'</button>';
 
 		$this->table->set_template(tbl_tmp());
-		
 		$head_data = array(
-			'nomor' => 'Nomor',
-			'name' => 'Tanggal',
-			'tahun_anggaran_name' => 'Tahun Anggaran',
-			'bidang_unit_name' => 'Unit SKPD',
-			'jumlah' => 'Jumlah',
-			'total' => 'Total',
+			'code' => $this->lang->line('code'),
+			'name' => $this->lang->line('name'),
+			$this->data['index_parent'].'_name' => $this->data['title_parent']
 		);
 		$heading[] = form_checkbox(array('id'=>'selectAll','value'=>1));
 		$heading[] = '#';
@@ -40,18 +42,15 @@ class Rencana_pengadaan_barang extends MY_Controller
 		}		
 		$heading[] = $this->lang->line('action');
 		$this->table->set_heading($heading);
-		$result = $this->model->get()->result();
+		$result = $this->inherit_model->get($this->data['tbl_name'],$this->data['index_parent'],$this->data['code'])->result();
 		$i=1+$offset;
 		foreach($result as $r){
 			$this->table->add_row(
 				array('data'=>form_checkbox(array('name'=>'check[]','value'=>$r->id)),'width'=>'10px'),
 				$i++,
-				anchor($this->data['index'].'/edit/'.$r->id.get_query_string(),$r->nomor),
-				format_dmy($r->tanggal),
-				$r->tahun_anggaran_name,
-				$r->bidang_unit_name,
-				array('data'=>number_format($r->jumlah),'align'=>'right'),
-				array('data'=>number_format($r->total),'align'=>'right'),
+				anchor($this->data['index'].'/edit/'.$r->id.get_query_string(),$r->code),
+				$r->name,
+				$r->{$this->data['index_parent'].'_name'},
 				anchor($this->data['index'].'/edit/'.$r->id.get_query_string(),$this->lang->line('edit'))
 				."&nbsp;|&nbsp;".anchor($this->data['index'].'/delete/'.$r->id.get_query_string(),$this->lang->line('delete'),array('onclick'=>"return confirm('".$this->lang->line('confirm')."')"))
 			);
@@ -67,35 +66,37 @@ class Rencana_pengadaan_barang extends MY_Controller
 		$this->pagination->initialize($config); 
 		$this->data['pagination'] = $this->pagination->create_links();
 
-		$data['content'] = $this->load->view($this->data['index'].'/list',$this->data,true);
+		$data['content'] = $this->load->view('inherit_list',$this->data,true);
 		$this->load->view('template',$data);
 	}
-	public function search(){
+	public function search()
+	{
 		$data = array(
 			'search' => $this->input->post('search'),
 			'limit' => $this->input->post('limit'),
-			'tahun_anggaran' => $this->input->post('tahun_anggaran'),
-			'bidang_unit' => $this->input->post('bidang_unit'),
-			'date_from' => $this->input->post('date_from'),
-			'date_to' => $this->input->post('date_to')
+			$this->data['index_parent'] => $this->input->post($this->data['index_parent'])
 		);
 		redirect($this->data['index'].get_query_string($data));		
 	}
-	private function _field(){
+	private function _field()
+	{
 		$data = array(
-			'nomor' => $this->input->post('nomor'),
-			'tanggal' => format_ymd($this->input->post('tanggal')),
-			'tahun_anggaran' => $this->input->post('tahun_anggaran'),
-			'bidang_unit' => $this->input->post('bidang_unit')
+			'code' => $this->input->post('code'),
+			'name' => strtoupper($this->input->post('name')),
+			'parent' => $this->input->post($this->data['index_parent']),
+			'type' => $this->data['code']
 		);
 		return $data;		
 	}
-	private function _set_rules(){
-		$this->form_validation->set_rules('nomor','Nomor','required|trim');
-		$this->form_validation->set_rules('tanggal','Tanggal','required|trim');
+	private function _set_rules()
+	{
+		$this->form_validation->set_rules('code',$this->lang->line('code'),'required|trim');
+		$this->form_validation->set_rules('name',$this->lang->line('name'),'required|trim');
+		$this->form_validation->set_rules($this->data['index_parent'],$this->data['title_parent'],'required|trim');
 		$this->form_validation->set_error_delimiters('<p class="error">','</p>');
 	}
-	public function add(){
+	public function add()
+	{
 		$this->_set_rules();
 		if($this->form_validation->run()===false){
 			$this->data['add_btn'] = anchor($this->data['index'].'/add'.get_query_string(),$this->lang->line('new'));
@@ -104,81 +105,51 @@ class Rencana_pengadaan_barang extends MY_Controller
 			$this->data['breadcrumb'] = $this->data['index'].get_query_string();
 			$this->data['heading'] = $this->lang->line('new');
 			$this->data['owner'] = '';
-			$data['content'] = $this->load->view($this->data['index'].'/form',$this->data,true);
+			$data['content'] = $this->load->view('inherit_form',$this->data,true);
 			$this->load->view('template',$data);
 		}else{
 			$data = $this->_field();
 			$data['user_create'] = $this->user_login['id'];
 			$data['date_create'] = date('Y-m-d H:i:s');
-			$id = $this->model->add($data);
-			$this->add_detail($id);
+			$this->model->add($this->data['tbl_name'],$data);
 			$this->session->set_flashdata('alert','<div class="alert alert-success">'.$this->lang->line('new_success').'</div>');
 			redirect($this->data['index'].'/add'.get_query_string());
 		}
 	}
-	public function edit($id){
+	public function edit($id)
+	{
 		$this->_set_rules();
 		if($this->form_validation->run()===false){
-			$this->data['row'] = $this->model->get_from_field('id',$id)->row();
-			$this->data['row_detail'] = $this->model->get_from_field_detail('id_parent',$id)->result();
-			$this->data['row']->tanggal = format_dmy($this->data['row']->tanggal);
+			$this->data['row'] = $this->model->get_from_field($this->data['tbl_name'],'id',$id)->row();
 			$this->data['add_btn'] = anchor(current_url(),$this->lang->line('edit'));
 			$this->data['list_btn'] = anchor($this->data['index'].get_query_string(),$this->lang->line('list'));
 			$this->data['action'] = $this->data['index'].'/edit/'.$id.get_query_string();
 			$this->data['breadcrumb'] = $this->data['index'].get_query_string();
 			$this->data['heading'] = $this->lang->line('edit');
 			$this->data['owner'] = owner($this->data['row']);
-			$data['content'] = $this->load->view($this->data['index'].'/form',$this->data,true);
+			$data['content'] = $this->load->view('inherit_form',$this->data,true);
 			$this->load->view('template',$data);
 		}else{
 			$data = $this->_field();
 			$data['user_update'] = $this->user_login['id'];
 			$data['date_update'] = date('Y-m-d H:i:s');
-			$this->model->edit($id,$data);
-			$this->model->delete_detail($id);
-			$this->add_detail($id);
+			$this->model->edit($this->data['tbl_name'],$id,$data);
 			$this->session->set_flashdata('alert','<div class="alert alert-success">'.$this->lang->line('edit_success').'</div>');
 			redirect($this->data['index'].'/edit/'.$id.get_query_string());
 		}
 	}
-	public function delete($id=''){
+	public function delete($id='')
+	{
 		if($id<>''){
-			$this->model->delete($id);
+			$this->model->delete($this->data['tbl_name'],$id);
 		}
 		$check = $this->input->post('check');
 		if($check<>''){
 			foreach($check as $c){
-				$this->model->delete($c);
+				$this->model->delete($this->data['tbl_name'],$c);
 			}
 		}
 		$this->session->set_flashdata('alert','<div class="alert alert-success">'.$this->lang->line('delete_success').'</div>');
 		redirect($this->data['index'].get_query_string());
-	}
-	private function add_detail($id){
-		if($id){				
-			$kode_barang = $this->input->post('kode_barang');
-			$merk = $this->input->post('merk');
-			$jumlah = $this->input->post('jumlah');
-			$harga = $this->input->post('harga');
-			$keterangan = $this->input->post('keterangan');
-			if($kode_barang){
-				$i=0;
-				$data = array();
-				foreach ($kode_barang as $row) {
-					$data[] = array(
-						'id_parent' => $id,
-						'kode_barang' => $row,
-						'merk' => $merk[$i],
-						'jumlah' => str_replace(',', '', $jumlah[$i]),
-						'harga' => str_replace(',', '', $harga[$i]),
-						'keterangan' => $keterangan[$i],
-						'user_create' => $this->user_login['id'],
-						'date_create' => date('Y-m-d H:i:s')
-					);
-					$i++;
-				}
-				$this->model->add_detail($data);
-			}
-		}		
 	}
 }
